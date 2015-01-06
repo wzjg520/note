@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script src="js/jquery-1.11.1.min.js"></script>
+<style>
+	ul,li,body{
+		padding:0;
+		margin:0;
+	}
+	li{
+		list-style: none;
+	}
+	.wrap{
+		position: relative;
+		margin:100px;
+	}
+	.wrap input{
+		width:216px;
+		line-height: 16px;
+		padding:8px 5px;
+		border:1px solid #ddd;
+		background: #f2f2f2;
+	}
+	.wrap .slideList{
+		position: absolute;
+		left:0;
+		top:32px;
+		width:226px;
+		border:1px solid #ddd;
+		background: #f2f2f2;
+		display: block;
+	}
+	.wrap .slideList li{
+		line-height: 30px;
+		padding:0 5px;
+		cursor:pointer;
+	}
+	.wrap .slideList li.on{
+		background: #ccc;
+		color:green;
+	}
+
+</style>
+<script>
+$(function(){
+autoComplete(['163.com','126.com','gmain.com','youpu.com','qq.com'],20,true)
+function autoComplete(array,length,isMobile = false){
+	var arry=array;
+	$('.autoComplete').bind('keyup',function(e){
+		if(isMobile && $(this).val().indexOf('@') == -1){
+			$('.slideList_box').hide();
+			return;
+		}
+		if(e.keyCode == 40 && (sltLength=$('.slideList_box li').length) > 0){
+			if((eq = $('.slideList_box li.on').index('.slideList_box li'))<sltLength){
+				$('.slideList_box li.on').removeClass('on');
+				var sltText=$('.slideList_box li').eq(eq+1).addClass('on').html();
+				$(this).val(sltText);
+			}
+		}else if(e.keyCode == 38){
+			if((eq = $('.slideList_box li.on').index('.slideList_box li'))<sltLength){
+				$('.slideList_box li.on').removeClass('on');
+				var sltText=$('.slideList_box li').eq(eq-1).addClass('on').html();
+				$(this).val(sltText);
+			}
+		}else if(e.keyCode == 13){
+			$(this).val($('.slideList_box li.on').text());
+			$('.slideList_box').hide();
+		}else{
+			$('.slideList_box').show();
+			if($(this).val().length>length){
+				var inputText = $(this).val();
+				$(this).val(inputText.substring(0,length));
+				return;
+			};
+			var html = '',
+			_this = this,
+			val = $(_this).val(),
+			flag = val.indexOf('@') == -1;
+			if(flag)html = '<li class="on">'+val+'</li>';			
+			var pattern = /^.*@(.*)$/,
+			searchArray = [];
+			if(pattern.exec(val)){
+				patternVal = pattern.exec(val)[1]
+				$(arry).each(function(i){
+					if(arry[i].indexOf(patternVal) != -1){
+						 searchArray.push(arry[i]);
+						 val=val.replace(patternVal,'')
+					}			
+				})
+			}
+			if(searchArray.length>0){
+				var arryTmp=searchArray;
+			}else if(!flag){
+				var arryTmp=searchArray;
+			}else{
+				var arryTmp = arry;
+			}				
+			$(arryTmp).each(function(i){
+				if(0 == i && !flag){
+					html += '<li class="on">'+val+arryTmp[i]+'</li>';
+				}else if(flag){
+					html += '<li>'+val+'@'+arryTmp[i]+'</li>';
+				}
+				else{
+					html += '<li>'+val+arryTmp[i]+'</li>';
+				}				
+			})
+			$('.slideList_box').html(html);
+		}					
+	})
+	$('.slideList_box').on('click','li',function(){
+		$('.autoComplete').val($(this).text().substring(0,length));
+		$('.slideList_box').hide();
+	})
+	$(document).click(function(){
+		$('.slideList_box').hide();
+	})
+}
+})
+</script>
+<body>
+	<div class="wrap">
+		<input class="autoComplete" type="text" placeholder="请输入您的手机号或邮箱帐号">
+		<div class="slideList">
+			<ul class="slideList_box">
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
