@@ -47,7 +47,7 @@
 <script>
 $(function(){
 autoComplete(['163.com','126.com','gmain.com','youpu.com','qq.com'],20,true)
-function autoComplete(array,length,isMobile = false){
+function autoComplete(array,length,isMobile){
 	var arry=array;
 	$('.autoComplete').bind('keyup',function(e){
 		if(isMobile && $(this).val().indexOf('@') == -1){
