@@ -1,0 +1,81 @@
+autoComplete(['163.com','126.com','gmain.com','youpu.com','qq.com'],40,true)
+function autoComplete(array,length,isMobile){
+	var arry=array;
+	jq('.autoComplete').bind('keyup',function(e){
+  	if(isMobile && jq(this).val().indexOf('@') == -1){
+  		jq('.slideList_box').hide();
+  		return;
+  	}
+		if(e.keyCode == 40 && (sltLength=jq('.slideList_box li').length) > 0){
+			if (this.indexs == undefined) {
+		this.indexs = 1;
+	}else if(this.indexs >= jq('.slideList_box li').length - 1){
+		this.indexs = 0;
+	}else {
+		this.indexs++;
+	}
+			jq('.slideList_box li').eq(this.indexs).addClass('on').siblings('li').removeClass('on');
+			var sltText=jq('.slideList_box li').eq(this.indexs).html();
+			jq(this).val(sltText);
+		}else if(e.keyCode == 38){
+			if (this.indexs == undefined || this.indexs <= 0) {
+		this.indexs = jq('.slideList_box li').length - 1;
+	} else {
+		this.indexs--;
+	}
+			jq('.slideList_box li').eq(this.indexs).addClass('on').siblings('li').removeClass('on');
+			var sltText=jq('.slideList_box li').eq(this.indexs).html();
+			jq(this).val(sltText);
+		}else if(e.keyCode == 13){
+			jq(this).val(jq('.slideList_box li.on').text());
+			jq('.slideList_box').hide();
+		}else{
+			jq('.slideList_box').show();
+			if(jq(this).val().length>length){
+  			var inputText = jq(this).val();
+  			jq(this).val(inputText.substring(0,length));
+  			return;
+			};
+    	var html = '',
+    	_this = this,
+    	val = jq(_this).val(),
+    	flag = val.indexOf('@') == -1;
+    	if(flag)html = '<li class="on">'+val+'</li>';
+    	var pattern = /^.*@(.*)$/,
+    	searchArray = [];
+    	if(pattern.exec(val)){
+    		patternVal = pattern.exec(val)[1]
+    		jq(arry).each(function(i){
+    			if(arry[i].indexOf(patternVal) != -1){
+    				searchArray.push(arry[i]);
+    				val=val.replace(patternVal,'')
+					}
+				})
+ 		 	}
+			if(searchArray.length>0){
+				var arryTmp=searchArray;
+			}else if(!flag){
+				var arryTmp=searchArray;
+    	}else{
+    		var arryTmp = arry;
+    	}
+			jq(arryTmp).each(function(i){
+				if(0 == i && !flag){
+					html += '<li class="on">'+val+arryTmp[i]+'</li>';
+      	}else if(flag){
+      		html += '<li>'+val+'@'+arryTmp[i]+'</li>';
+      	}else{
+					html += '<li>'+val+arryTmp[i]+'</li>';
+				}
+			})
+			jq('.slideList_box').html(html);
+		}
+	})
+	jq('.slideList_box').on('click','li',function(){
+		jq('.autoComplete').val(jq(this).text().substring(0,length));
+		jq('.slideList_box').hide();
+	})
+	jq(document).click(function(){
+		jq('.slideList_box').hide();
+	})
+}
