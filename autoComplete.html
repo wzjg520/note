@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
-<script src="js/jquery-1.11.1.min.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <style>
 	ul,li,body{
 		padding:0;
@@ -57,7 +57,12 @@ function autoComplete(array,length,isMobile){
 		if(e.keyCode == 40 && (sltLength=$('.slideList_box li').length) > 0){
 			if((eq = $('.slideList_box li.on').index('.slideList_box li'))<sltLength){
 				$('.slideList_box li.on').removeClass('on');
-				var sltText=$('.slideList_box li').eq(eq+1).addClass('on').html();
+				if(eq==sltLength-1){
+					eq = 0;
+				}else{
+					eq += 1;
+				}
+				var sltText=$('.slideList_box li').eq(eq).addClass('on').html();
 				$(this).val(sltText);
 			}
 		}else if(e.keyCode == 38){
