@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+        <meta charset="utf-8">
+        <title>rainyday.js demo #1</title>       
+       <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+	    <style>
+	    	li{
+	    		list-style:none;
+				padding:5px 0;
+				display:none;
+	    	}
+			ul{
+				padding:0 0 0 10px;
+				margin:0px;
+			}
+	    	.list_box{
+	    		width:100px;
+				border:1px solid #ccc;
+				height:130px;
+	    	}
+			
+			.show{
+				display:block;
+			}
+	    
+        </style>
+</head>
+    <body >
+        <div class="list_box">
+        	<ul>
+        		<li class="show">第1个</li>
+				<li class="show">第2个</li>
+				<li class="show">第3个</li>
+				<li class="show">第4个</li>
+				<li class="show">第5个</li>
+				<li>第6个</li>
+				<li>第7个</li>
+				<li>第8个</li>
+				<li>第9个</li>
+				<li>第10个</li>
+				<li>第11个</li>
+				<li>第12个</li>
+				<li>第13个</li>
+				<li>第14个</li>
+				<li>第15个</li>
+				<li>第16个</li>
+				<li>第17个</li>
+				<li>第18个</li>
+				<li>第19个</li>
+				<li>第20个</li>
+				<li>第21个</li>
+				<li>第22个</li>
+				<li>第23个</li>
+				<li>第24个</li>
+        	</ul>
+			
+        </div>
+		
+		<script>
+			$(function(){
+				var li = $('li'),
+				length = li.length,
+				page = 1,	//第几页
+				num = 5; //每页个数
+				total = Math.ceil(length/num); //总页数
+				//slice是jquery内置的
+				setInterval(function(){
+					li.removeClass('show')
+					li.slice((page-1)*num, page*num ).addClass('show')
+					page++;
+					if(page>total)page = 1;
+				},1000) 
+			})
+			
+			
+			
+		</script>
+    </body>
+</html>
