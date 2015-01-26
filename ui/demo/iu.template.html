@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+	<script src="js/ProfileJS.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.template.js"></script>
+
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+
+<div class="demo">
+	<div class="header"><span>Template</span></div>
+	<div class="contents" style="position:relative">
+		<pre id="tmpl_test" style="line-height:1em">
+<div class="if">
+	{if 1==1 && 2==2}
+		输出 if 1 子句
+	{/if}
+</div>
+<div class="if_else">
+	{if 1==2}
+		输出 if 子句
+	{else}
+		输出 else 子句
+	{/if}
+</div>
+<div class="if_else_if">
+	{if 1==3}
+		输出 if 子句
+	{elseif 1==1}
+		输出 elseif 子句
+	{else}
+		输出 else 子句
+	{/if}
+</div>
+<div class="for">
+	{for i in arr}
+		输出 for in 子句 : key : {key}, value : {i}
+	{/for}
+</div>
+<div class="for_empty">
+	{for i in arr_empty}
+		输出 for 子句 : key : {key}, value : {i}
+	{forelse}
+		输出 forelse 子句
+	{/for}
+</div>
+<div>
+	<!-- {var a=1,b=2} -->
+	<!-- {var b=2} -->
+	{var c=3,d=4}
+	var 子句, a : {a}, b : {b}, c : {c}, d : {#d}
+</div></pre>
+		<div style="position:absolute;top:10px;right:10px;padding:14px;background-color:#eee">
+			<p style="margin:0;padding:0;">渲染结果</p>
+			<pre id="tmpl_rendered" style="line-height:1em"></pre>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var view = iu.template(document.getElementById('tmpl_test').innerHTML);
+		iu.template.setEscape(false);
+		var str = view.render({
+			b : '<script type="text/javascript">alert(123)<\/script>'
+		});
+
+		document.getElementById('tmpl_rendered').innerHTML = str;
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>100,1000,10000 time-cost</span></div>
+	<div class="contents">
+		100 余条语句, 分别运行 100,1000,10000 次 <input onclick="test10000()" type="button" value="Test" /> 可以同时查看任务管理
+	</div>
+	<script type="text/javascript">
+	function test10000() {
+		ProfileJS.test(renderTemplate, false);
+	}
+
+	function renderTemplate() {
+		var v = iu.template(tmpl_str);
+		return v.render(data);
+	}
+
+	$(function() {
+		tmpl_str = document.getElementById('tmpl_10000').innerHTML;
+	});
+	</script>
+</div>
+
+<div id="tmpl_10000" style="display:none">
+	<h1>${title}</h1>
+	<div>
+		brief :
+		<div>${brief.source}</div>
+		<div>news : ${brief.news}</div>
+		<div>time : ${brief.time}</div>
+		<div>share : ${brief.to_sns}</div>
+		<div>comments : ${brief.comments}</div>
+	</div>
+	<div id="head" style="margin:0 4px;font-size:16px;">
+		&lt;img src="${head.img_src}" alt="${head.alt}"/&gt;
+		<blockquote>${head.name}</blockquote>
+		<p>Offered by ${head.source}</p>
+	</div>
+	<p style="" name="" contenteditable="">${p1}</p>
+	<div>
+		{for p in paragraph}
+		<p>
+			<h3>${p.title}</h3>
+			{for s in p.sentences}
+			${s} <label style="display:none">123</label>
+			{forelse}
+			None Sentence
+			{/for}
+		</p>
+		{/for}
+	</div>
+	<div id="response">
+		response : 
+	
+		<h3>${response.title}</h3>
+		<p>${response.content}</p>
+	</div>
+	<div id="relatives" style="background:#ddd">
+		<ul>
+		${for r in relatives}
+		<li>标题：${r}</li>
+		{/for}
+		</ul>
+	</div>
+	<div class="weibo">
+		{for w in weibo}
+			${if w.checked}
+			<div class="checked">
+				&lt;img src="${w.avatar}" alt=""/&gt;
+				<span>${w.name}</span>
+				<input type="checkbox" checked="" />
+			</div>
+			${else}
+			<div class="unchecked">
+				&lt;img src="${w.avatar}" alt=""/&gt;
+				<span>${w.name}</span>
+				<input type="checkbox" />
+			</div>
+			{/if}
+		{/for}
+	</div>
+	<div style="top:4px;right:4px;" class="video">
+		<ul>
+		{for v in videos}
+			<li>
+				&lt;img src="${v.img_src}" alt="" title="${v.title}" /&gt;
+				<h4>Title : ${v.title}</h4>
+			</li>
+		{/for}
+		</ul>
+	</div>
+	<h1>${title}</h1>
+	<div>
+		brief :
+		<div>${brief.source}</div>
+		<div>news : ${brief.news}</div>
+		<div>time : ${brief.time}</div>
+		<div>share : ${brief.to_sns}</div>
+		<div>comments : ${brief.comments}</div>
+	</div>
+	<div id="head" style="margin:0 4px;font-size:16px;">
+		&lt;img src="${head.img_src}" alt="${head.alt}"/&gt;
+		<blockquote>${head.name}</blockquote>
+		<p>Offered by ${head.source}</p>
+	</div>
+	<p style="" name="" contenteditable="">${p1}</p>
+	<div>
+		{for p in paragraph}
+		<p>
+			<h3>${p.title}</h3>
+			{for s in p.sentences}
+			${s} <label style="display:none">123</label>
+			{forelse}
+			None Sentence
+			{/for}
+		</p>
+		{/for}
+	</div>
+	<div id="response">
+		response : 
+	
+		<h3>${response.title}</h3>
+		<p>${response.content}</p>
+	</div>
+	<div id="relatives" style="background:#ddd">
+		<ul>
+		{for r in relatives}
+		<li>标题：${r}</li>
+		{/for}
+		</ul>
+	</div>
+	<div class="weibo">
+		{for w in weibo}
+			${if w.checked}
+			<div class="checked">
+				&lt;img src="${w.avatar}" alt=""/&gt;
+				<span>${w.name}</span>
+				<input type="checkbox" checked="" />
+			</div>
+			${else}
+			<div class="unchecked">
+				&lt;img src="${w.avatar}" alt=""/&gt;
+				<span>${w.name}</span>
+				<input type="checkbox" />
+			</div>
+			{/if}
+		{/for}
+	</div>
+	<div style="top:4px;right:4px;" class="video">
+		<ul>
+		{for v in videos}
+			<li>
+				&lt;img src="${v.img_src}" alt="" title="${v.title}" /&gt;
+				<h4>Title : ${v.title}</h4>
+			</li>
+		{/for}
+		</ul>
+	</div>
+	<h1>${title}</h1>
+	<div>
+		brief :
+		<div>${brief.source}</div>
+		<div>news : ${brief.news}</div>
+		<div>time : ${brief.time}</div>
+		<div>share : ${brief.to_sns}</div>
+		<div>comments : ${brief.comments}</div>
+	</div>
+	<div id="head" style="margin:0 4px;font-size:16px;">
+		&lt;img src="${head.img_src}" alt="${head.alt}"/&gt;
+		<blockquote>${head.name}</blockquote>
+		<p>Offered by ${head.source}</p>
+	</div>
+	<p style="" name="" contenteditable="">${p1}</p>
+	<div>
+		{for p in paragraph}
+		<p>
+			<h3>${p.title}</h3>
+			{for s in p.sentences}
+			${s} <label style="display:none">123</label>
+			{forelse}
+			None Sentence
+			{/for}
+		</p>
+		{/for}
+	</div>
+	<div id="response">
+		response : 
+	
+		<h3>${response.title}</h3>
+		<p>${response.content}</p>
+	</div>
+	<div id="relatives" style="background:#ddd">
+		<ul>
+		{for r in relatives}
+		<li>标题：${r}</li>
+		{/for}
+		</ul>
+	</div>
+	<div class="weibo">
+		{for w in weibo}
+			${if w.checked}
+			<div class="checked">
+				&lt;img src="${w.avatar}" alt=""/&gt;
+				<span>${w.name}</span>
+				<input type="checkbox" checked="" />
+			</div>
+			${else}
+			<div class="unchecked">
+				&lt;img src="${w.avatar}" alt=""/&gt;
+				<span>${w.name}</span>
+				<input type="checkbox" />
+			</div>
+			{/if}
+		{/for}
+	</div>
+	<div style="top:4px;right:4px;" class="video">
+		<ul>
+		{for v in videos}
+			<li>
+				&lt;img src="${v.img_src}" alt="" title="${v.title}" /&gt;
+				<h4>Title : ${v.title}</h4>
+			</li>
+		{/for}
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript">
+var data = {
+	"title" : "",
+	"brief" : {
+		"source" : "社会万象",
+		"news" : "扬子晚报",
+		"time" : "2013-01-12 07:03",
+		"to_sns" : "我要分享",
+		"comments" : 25
+	},
+	"head" : {
+		"img_src" : "http://img1.gtimg.com/news/pics/hv1/24/197/1242/80811309.jpg",
+		"alt" : "转播到腾讯微博",
+		"name" : "杜明昱",
+		"source" : "图片由杜明昱家人提供。"
+	},
+	"p1" : "1月8日上午，东南大学教育基金会新设立了一项“特殊”的助学金“温暖助学金”。之所以说特殊，是因为这笔助学金的捐赠者不是国家或者学校，不是企业单位，也不是某位校友，而是南京一名普普通通的小学生杜明昱。助学金的捐赠者是小学生，这在东南大学还是第一次。昨天，11岁的杜明昱和扬子晚报记者对话时悄悄地说：“请别告诉哥哥姐姐我是小学生，他们会有压力的。”",
+	"paragraph" : [
+			{
+				"title" : "妈妈说他“吝啬”“几百元的陀螺不要，只买10元的”",
+				"sentences" : [
+						"记者了解到，根据助学金设立协议，杜明昱将连续四年",
+						"年每年向东南大学教育基金会提供两千元作为“温暖助学金”，用来资助一名东南大学在读的家庭经济困难并申请了国家助学贷款的本科生，帮助受资助者减轻生活压力完成学业。出",
+						"里的学习委员。杜明昱主动提出要把压岁钱捐给东大贫困生，得到妈妈的支持。不过在妈妈马慧宁眼中，杜明昱很少主动开口要“花钱”，甚至有点“吝啬”。“很奇怪，我家儿子天生知",
+						"不掉，就小心存放在纸盒里。校园里流行玩陀螺，有的小朋友收集了几个甚至十几个陀螺，他愣是“熬住”了没开口向妈妈要。“其实他心里很想要的。”小姨知道了杜明昱的心思，悄悄地说：",
+						"比赛拿了一等奖，外婆奖励了10元，杜明昱先是不要，收下后又原封不动存进自己的小纸盒。",
+						"陀螺的价格从几百元到十元不", "，收下后又原封不动存进自己的小纸盒。" ]
+			},
+			{
+				"title" : "这次他却好大方 “户头”里有1万元，拿出8千设助学金",
+				"sentences" : [ "从杜明", "昱出生那年起", "家里就为他在银行", "单独", "开了",
+						"教育基金”账户", "，专门存放他", "每年的压岁", "和他平时", "省下的零用钱",
+						"平时学杂费就", "这个账户里", "让记者惊", "的是，除了", "岁钱和零花钱，", "杜明昱早",
+						"学会“赚", "”了。“小时", "街，有人发", "传单，他拿到手攥", "手里，走一",
+						"。”妈妈问他有什么用？他", "回答：“", "要帮助的人", "”杜明昱总", "这样告诉妈妈" ]
+			}, {
+				"title" : "空标题",
+				"sentences" : []
+			} ],
+	"response" : {
+		"title" : "东大回应： 尊重孩子意愿，不透露捐赠者身份",
+		"content" : "听完杜明昱小朋友的捐赠意愿，东南大学教育发展基金会李爽老师从最初的吃惊变为到赞叹，“11岁小朋友给大学生捐助，这在东南大"
+	},
+	"relatives" : {
+		"a" : "农民发网帖称当地贫困需衣物 获捐赠后变卖物资",
+		"b" : "北京团市委发起冬衣捐赠活动",
+		"c" : "访朝代表团成员称谷歌高层或对朝进行捐赠 ",
+		"d" : "访朝代表团成员称谷歌高层或对朝进行捐赠 ",
+		"e" : "京市规定慈善组织不公开捐赠信息最高罚3万 "
+	},
+	"recommands" : {
+		"a" : "高清：上万克钦难民逃至中缅边境避难",
+		"b" : "高清：长沙流浪者生存百态 对救助站表示恐",
+		"c" : "组图：澳大利亚高温致严重山火 上万只羊烧死",
+		"d" : "阔气十足迪拜黄金市场",
+		"e" : "中国黄金集团所售金元宝现锈迹"
+	},
+	"weibo" : [
+			{
+				"avatar" : "http://img1.gtimg.com/mbloghead/2e/d5/2ed53cdbab7ef3334abc",
+				"name" : "朱永新",
+				"checked" : true
+			},
+			{
+				"avatar" : "http://img1.gtimg.com/mbloghead/aa/fb/aafb10de0bbde9fb37a0",
+				"name" : "叶青",
+				"checked" : false
+			},
+			{
+				"avatar" : "http://img1.gtimg.com/mbloghead/a2/34/a234df2a8474d1e853be",
+				"name" : "TNC马云",
+				"checked" : true
+			},
+			{
+				"avatar" : "http://img1.gtimg.com/mbloghead/53/a9/53a926ff6bae3d5f3952",
+				"name" : "韩子勇",
+				"checked" : false
+			},
+			{
+				"avatar" : "http://img1.gtimg.com/mbloghead/39/3c/393c1255480f252333a8",
+				"name" : "花红飞燕",
+				"checked" : true
+			},
+			{
+				"avatar" : "http://img1.gtimg.com/mbloghead/89/99/8999bb07d743b7e385c6",
+				"name" : "张建刚",
+				"checked" : true
+			} ],
+	"videos" : {
+		"huapo" : {
+			"img_src" : "http://img1.gtimg.com/news/pics/hv1/56/247/1242/80824091.jpg",
+			"title" : "滑坡遇难者被棉被包裹"
+		},
+		"xiuzhang" : {
+			"img_src" : "http://img1.gtimg.com/news/pics/hv1/114/250/1242/80824914.jpg",
+			"title" : "带袖章当黑社会打人"
+		},
+		"guer" : {
+			"img_src" : "http://img1.gtimg.com/news/pics/hv1/57/247/1242/80824092.jpg",
+			"title" : "官员借孤儿应付检查"
+		},
+		"huoshan" : {
+			"img_src" : "http://img1.gtimg.com/news/pics/hv1/71/250/1242/80824871.jpg",
+			"title" : "俄火山喷发现冰火奇景"
+		}
+	}
+};
+</script>
+</body>
+</html>

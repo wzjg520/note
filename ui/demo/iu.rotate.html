@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.rotate.js"></script>
+<style type="text/css">
+.rotate_outer{
+	border:1px solid #666;
+}
+</style>
+</head>
+<body>
+
+<div id="rotate_default" class="demo">
+	<div class="header"><span>Default Rotate</span></div>
+	<div class="contents">
+		<div class="rotate_outer" class="demo_content">
+			<input type="button" value="向左转" onclick="showDefaultRotate(true)" />
+			<input type="button" value="向有转" onclick="showDefaultRotate(false)" />
+			<br/>
+			<img id="img_rotate_default" src="images/lss.jpg"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var angle_default = 0;
+
+		function showDefaultRotate(left) {
+			angle_default += left ? -90 : 90;
+			iu.rotate('#img_rotate_default', angle_default);
+		}
+	</script>
+</div>
+
+<div id="rotate_top_left" class="demo">
+	<div class="header"><span>Rotate Top|Left</span></div>
+	<div class="contents">
+		<div class="rotate_outer" class="demo_content">
+			<input type="button" value="向左转" onclick="showRotateTopLeft(true)" />
+			<input type="button" value="向有转" onclick="showRotateTopLeft(false)" />
+			<br/>
+			<img id="img_rotate_top_left" src="images/lss2.jpg"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var angle_top = 0;
+
+		function showRotateTopLeft(left) {
+			angle_top += left ? -90 : 90;
+			iu.rotate('#img_rotate_top_left', {
+				angle : angle_top,
+				vertical : 'top',
+				horizontal : 'left'
+			});
+		}
+	</script>
+</div>
+
+<div id="rotate_fixed_rotate" class="demo">
+	<div class="header"><span>Rotate Bottom|Right</span></div>
+	<div class="contents">
+		<div class="rotate_outer" class="demo_content" style="position: fixed;bottom: 0;right: 0;text-align:right">
+			<img id="img_rotate_bottom_right" src="images/lss.jpg" style="display:block"/>
+			<input type="button" value="向左转" onclick="showRotateBottomRight(true)" />
+			<input type="button" value="向有转" onclick="showRotateBottomRight(false)" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		var angle_right = 0;
+
+		function showRotateBottomRight(left) {
+			angle_right += left ? -90 : 90;
+			iu.rotate('#img_rotate_bottom_right', {
+				angle : angle_right,
+				vertical : 'bottom',
+				horizontal : 'right'
+			});
+		}
+	</script>
+</div>
+</body>
+</html>

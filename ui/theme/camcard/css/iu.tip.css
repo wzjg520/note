@@ -1,0 +1,98 @@
+/* iu.tip.css */
+.iu_tip{
+	display: none;
+	position: absolute;
+	background: #fff;
+	color: #282828;
+	padding: 10px 14px;
+	min-width: 80px;
+	text-align: center;
+	font-size: 14px;
+	border: 1px solid black;
+}
+
+.iu_tip_text{}
+
+.iu_tip_triangle{
+	position: absolute;
+	border: 7px solid black;
+	display: none;
+}
+
+.iu_tip_triangle_top{
+	display: block;
+	/*top: -7px;
+	left: -7px;
+	margin-left: 50%;*/
+	border-top: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.iu_tip_triangle_bottom{
+	display: block;
+	/*bottom: -7px;
+	left: -7px;
+	margin-left: 50%;*/
+	border-bottom: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.iu_tip_triangle_right{
+	display: block;
+	/*right: -7px;
+	top: 50%;
+	margin-top: -7px;*/
+	border-right: none;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+
+.iu_tip_triangle_left{
+	display: block;
+	/*left: -7px;
+	top: 50%;
+	margin-top: -7px;*/
+	border-left: none;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+
+.iu_tip_triangle_text{
+	/*display: none;*/
+	position: absolute;
+	border:6px solid white;
+}
+
+.iu_tip_triangle_top .iu_tip_triangle_text{
+	border-top: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	left: -6px;
+	top: 1px;
+}
+
+.iu_tip_triangle_bottom .iu_tip_triangle_text{
+	border-bottom: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	left: -6px;
+	top: -7px;
+}
+
+.iu_tip_triangle_left .iu_tip_triangle_text{
+	border-left: none;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+	top: -6px;
+	left: 1px;
+}
+
+.iu_tip_triangle_right .iu_tip_triangle_text{
+	border-right: none;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+	top: -6px;
+	left: -7px;
+}

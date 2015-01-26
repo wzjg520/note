@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.drag.js"></script>
+
+	<style type="text/css">
+		.slide_container{
+			position: relative;
+			overflow: hidden;
+			width: 312px;
+			height: 312px;
+			border: 2px solid #1486EA;
+		}
+
+		.slide_inner{
+			position: relative;
+			width: 1580px;
+			overflow: hidden;
+		}
+
+		.slide_inner .block{
+			float: left;
+			width: 312px;
+			height: 312px;
+		}
+
+		.block1{background-color:green}
+		.block2{background-color:blue}
+		.block3{background-color:gray}
+		.block4{background-color:orange}
+		.block5{background-color:red}
+	</style>
+</head>
+<body>
+
+<div class="demo">
+	<div class="header"><span>Default Draggable</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<img id="img_drag" src="images/lss.jpg" style="position:relative" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.drag('#img_drag');
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Draggable Limit</span></div>
+	<div class="contents">
+		<div id="drag_limit_container" class="demo_content iu_relative" style="background-color:#ccc;padding:20px;height:200px;">
+			<div id="drag_limit" style="position:relative;width:80px;height:80px;background-color:green;padding:10px;color:white">Draggable Limit</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.drag('#drag_limit', {
+			limit : '#drag_limit_container'
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Varied Draggable</span></div>
+	<div class="contents" style="position:relative">
+		<div id="drag_container" class="iu_relative" style="padding:10px;height:300px;border:1px solid green;">
+			<div id="drag_grid" style="position:absolute;width:60px;height:60px;background-color:green;padding:10px;color:white">Grid <br/>[20, 60]</div>
+
+			<div id="drag_handle" style="position:relative;left:200px;width:100px;height:80px;background-color:green;padding:10px;color:white;text-align:center">
+				<div class="title" style="height:20px;line-height:20px;background-color:#ccc">Title</div>
+				<div style="padding-top:20px">drag the title</div>
+			</div>
+
+			<div id="drag_cursor" style="position:relative;width:100px;height:50px;line-height:1.6em;background-color:green;padding:10px;color:white;text-align:center">
+				top : 10<br>
+				left : 10
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.drag('#drag_grid', {
+			limit : '#drag_container',
+			grid : [20, 60]
+		});
+
+		iu.drag('#drag_handle', {
+			limit : '#drag_container',
+			handle : '.title',
+			cursor : 'pointer',
+			opacity : 0.5,
+			zIndex : 10
+		});
+
+		iu.drag('#drag_cursor', {
+			top : 10,
+			left : 10
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="slide_container">
+	<div id="block" class="slide_inner">
+		<div class="block block1"></div>
+		<div class="block block2"></div>
+		<div class="block block3"></div>
+		<div class="block block4"></div>
+		<div class="block block5"></div>
+	</div>
+</div>
+<script type="text/javascript">
+var block = $('#block');
+
+iu.drag(block, {
+	axis : 'x',
+	start : function() {
+		block.stop();
+	},
+	drag : function() {},
+	stop : function(e, offset) {
+		var left = Math.round(offset.left / 312) * 312;
+
+		if (left > 0) {
+			left = 0;
+		} else if (left < -312 * 4) {
+			left = - 312 * 4;
+		}
+
+		block.animate({
+			left : left
+		});
+	}
+})
+</script>
+</div>
+
+</body>
+</html>

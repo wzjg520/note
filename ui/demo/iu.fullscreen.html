@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.fullscreen.js"></script>
+
+</head>
+<body>
+
+<div id="fullscreen" class="demo" style="background:white">
+	<div class="header"><span>Default FullScreen</span></div>
+	<div class="contents">
+		<div style="padding:40px;">
+			<div>IE 浏览器不支持</div>
+			<input id="enter_fullscreen" type="button" value="进入全屏"/><br/>
+			<input id="exit_fullscreen" type="button" value="退出全屏"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.fullscreen('#fullscreen', {
+			active : false,
+			afterenter : function() {
+				console.log('afterenter');
+			},
+			beforeenter : function() {
+				console.log('beforeexnter');
+			},
+			afterexit : function() {
+				console.log('afterexit');
+			},
+			beforeexit : function() {
+				console.log('beforeexit');
+			}
+		});
+		$('#enter_fullscreen').bind('click', function() {
+			iu.fullscreen('#fullscreen', true);
+			// iu.fullscreen('#fullscreen').enter();
+		});
+		$('#exit_fullscreen').bind('click', function() {
+			// iu.fullscreen('#fullscreen', false);
+			iu.fullscreen('#fullscreen').exit();
+		});
+	</script>
+</div>
+</body>
+</html>

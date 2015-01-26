@@ -1,0 +1,197 @@
+/* iu.dialog.css */
+.iu_dialog_panel{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.iu_dialog_mask{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+.iu_dialog{
+	position: absolute;
+	background-color: white;
+	box-shadow: 0 10px 20px #666;
+	border-radius: 10px;
+	min-height: 40px;
+	min-width: 400px;
+	max-width: 750px;
+	overflow: hidden;
+	font-family: lucidasans,Helvetica,"微软雅黑";
+	color: #52667A;
+}
+
+.iu_dialog_title{
+	height: 30px;
+	font-size: 18px;
+	font-family: lucidasans;
+	color: #5F778D;
+	padding-top: 10px;
+	padding-left: 20px;
+}
+
+.iu_dialog_close{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-image: url(../images/dialog_close.png);
+	z-index: 30;
+}
+
+.iu_dialog_close:hover{
+	background-image: url(../images/dialog_close_hover.png);
+}
+
+.iu_dialog_close_text{
+	display: none;
+	font-weight: bold;
+}
+
+.iu_dialog_close_text:hover{
+	text-shadow:0 0 4px #232;
+}
+
+.iu_dialog_content{
+	padding: 30px 20px 15px 20px;
+	overflow: auto;
+}
+
+.iu_dialog_buttons{
+	font-size: 14px;
+	margin: 48px 20px 24px;
+	text-align: center;
+}
+
+.iu_align_left .iu_dialog_button:first-child{
+	margin-left: 0;
+}
+
+.iu_align_right .iu_dialog_button:last-child{
+	margin-right: 0;
+}
+
+.iu_dialog_button{
+	display: inline-block;
+	margin: 0 8px;
+	cursor: pointer;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-image: url(../images/dialog_button_0.png);
+	font-size: 14px;
+	color: #52667a;
+}
+
+.iu_dialog_button:hover{
+	color: #7FA4C8;
+}
+
+.iu_dialog_button span{
+	display:inline-block;
+	background-repeat: no-repeat;
+	height: 24px;
+	line-height: 24px;
+	width: 62px;
+	padding: 0 6px;
+	background-image: url(../images/dialog_button_0.png);
+	background-position: right 0;
+}
+
+.iu_dialog_button_text{}
+
+.iu_dialog_button_0 {
+}
+
+.iu_dialog_button_0:hover {
+}
+
+.iu_dialog_button_0:active {
+}
+
+.iu_dialog_button_1 {
+}
+
+.iu_dialog_button_1:hover {
+}
+
+.iu_dialog_button_1:active {
+}
+
+/* dialog extend start */
+.iu_dialogalert .iu_dialog_content{
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: default;
+	padding-top: 8px;
+	padding-left: 10px;
+	padding-bottom: 8px;
+}
+
+.iu_icon_dialog_alert{
+}
+
+.iu_dialogconfirm .iu_dialog_content{
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	background-color: #fff;
+	padding: 66px 0px 0px 0px;
+	margin: 0 auto;
+	width: auto;
+	text-align:center;
+}
+
+.iu_icon_dialog_confirm{
+	
+}
+
+.iu_dialogprompt .iu_dialog_content{
+	text-align: center;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	background-color: #fff;
+	padding: 66px 0px 0px 0px;
+	margin: 0 auto;
+	width: auto;
+}
+
+.iu_dialogprompt_title{
+	margin-right: 10px;
+}
+
+.iu_dialogprompt_input {
+	width: 268px;
+	height: 26px;
+	line-height: 26px;
+	line-height: 26px\0;
+	padding: 1px 8px 2px 8px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font: normal 13px/20px;
+	margin: 10px auto;
+	color: #4c4c4c;
+	font-size: 14px;	
+}
+
+.iu_dialogprompt_input:focus {
+	box-shadow: 0px 0px 2px #add2eb;
+	outline-color:#87A5C3;
+}
+
+/* dialog extend end */

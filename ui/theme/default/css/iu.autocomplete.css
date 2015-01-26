@@ -1,0 +1,31 @@
+/* iu.tabs.css */
+.iu_autocomplete{
+	display: none;
+	position: absolute;
+	background-color: #fff;
+	height: auto;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid #ddd;
+}
+
+.iu_autocomplete li{
+	overflow: hidden;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+	color: #666;
+	font-size: 12px;
+	text-align: left;
+	height: 15px;
+	cursor: pointer;
+}
+
+.iu_autocomplete_li_selected{
+	background-color: #D8D8D8;	
+}
+
+.iu_autocomplete_li_hightlight{
+	font-weight: bold;
+	color: black;
+}

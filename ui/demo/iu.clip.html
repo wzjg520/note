@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../theme/default/css/iu.clip.css">
+	<style>
+	#result{
+		float:right;
+		width: 300px;
+	}
+	.a{
+		width: 100px;
+		height:100px;
+		overflow: hidden;
+		display: inline-block;
+		position: absolute;
+		left: 300px;
+		border:10px solid #DDD;
+	}
+	</style>
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['clip'];
+		</script>
+		<script src="js/third.js"></script>
+		<script src="js/demo.js"></script>
+
+		<script src="../js/iu.base.js"></script>
+		<script src="../js/iu.clip.js"></script>
+	</head>
+	<body>
+		<div class="demo">
+			<div class="header"><span>Clip image</span></div>
+			<div class="contents">
+				<div class="demo_content" style="padding: 40px; position: relative">
+					<div id="result">
+						<table>
+							<tr>
+								<td>x1:</td>
+								<td><input type="text" id='x1' /></td>
+							</tr>
+							<tr>
+								<td>y1:</td>
+								<td><input type="text" id='y1' /></td>
+							</tr>
+							<tr>
+								<td>x2:</td>
+								<td><input type="text" id='x2' /></td>
+							</tr>
+							<tr>
+								<td>y2:</td>
+								<td><input type="text" id='y2' /></td>
+							</tr>
+							<tr>
+								<td>width:</td>
+								<td><input type="text" id='width' /></td>
+							</tr>
+							<tr>
+								<td>height:</td>
+								<td><input type="text" id='height' /></td>
+							</tr>
+						</table>
+					</div>
+					<div class='a' >
+						<img src="images/lss.jpg" id='img2'>
+					</div>
+					<img id='img' src="images/lss.jpg" alt="" style='border:10px solid #DDD;'>
+				</div>
+			</div>
+			<script type='text/javascript'>
+			var a = iu.clip('#img',{
+				change:function(ele,data) {
+					$('#x1').val(data.x1);
+					$('#y1').val(data.y1);
+					$('#x2').val(data.x2);
+					$('#y2').val(data.y2);
+					$('#width').val(data.width);
+					$('#height').val(data.height);
+
+					var scaleX = 100 / (data.width || 1);
+					var scaleY = 100 / (data.height || 1);
+					$('#img2').css({
+						width: Math.round(scaleX * $('#img').width()) + 'px',
+						height: Math.round(scaleY * $('#img').height()) + 'px',
+						marginLeft: '-' + Math.round(scaleX * data.x1) + 'px',
+						marginTop: '-' + Math.round(scaleY * data.y1)+ 'px'
+					})
+
+				},
+				create: function () {},
+				start: function () {},
+				stop: function () {},
+			handles:true,// 边缘控制块,默认为true
+ 			aspectRatio:'1:1', //选择区域长宽比例 
+ 			maxWidth:null,
+ 			maxHeight:null,
+ 			minHeight:null,
+ 			minWidth:null,
+ 			initarea:null,// 初始选择{x1:12,y1:12,x2:23,y2:3}
+			resizable:true, //是否可resize
+			movable: true, //是否可拖动
+		}
+		);
+			</script>
+		</div>
+
+		
+	</body>
+	</html>

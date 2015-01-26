@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../theme/default/css/iu.unit.css">
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.unit.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+// 单个测试用例, 并且调用 equal 方法判断
+iu.unit('testSingle', '1', function() {
+	return '1';
+}, 'Check return 1');
+// 添加到相同测试名称所在队列
+iu.unit('testSingle', '2', function() {
+	return '1';
+}, 'Check return 2');
+iu.unit('testSingle', '1', '1', 'Check equal');
+
+// 测试套件
+iu.unit('testSuite', function(unit) {
+	unit.equal(1, "1", 'Check 1 == "1"');
+
+	unit.notEqual(1, 2, 'Check 1 != 2');
+
+	unit.equal(window, window + '', 'Check window == window + ""');
+
+	unit.notEqual(window, window + '', 'Check window === window + ""');
+
+	unit.deepEqual([{a : "a"}], [{ a : "a"}], 'Check deepEqual [{a : "a"}] == [{a : "a"}]');
+
+	unit.notDeepEqual({a : "a"}, {a : "b"}, 'Check notDeepEqual {a : "a"} != {a : "b"}');
+
+	unit.strictEqual(1, 1, 'Check 1 === "1"');
+
+	unit.notStrictEqual(1, "1", 'Check 1 !== "1"');
+
+	// 调用 unit.start 方法仍然会触发结果展示
+	setTimeout(function() {
+		unit.equal([1, 2, 3], "1,2,3", 'Check [1, 2, 3] == "1,2,3"');
+		unit.start();
+	}, 3000);
+});
+
+// 异步测试用例 1
+var date = (new Date).getDate();
+iu.unit.async('testAsync', function(unit) {
+	setTimeout(function() {
+		unit.equal(date, (new Date).getDate(), 'Check date equal asynchronously');
+		unit.start();
+	}, 1000);
+});
+
+// 异步测试用例 2
+var month = (new Date).getMonth();
+var year = (new Date).getYear();
+var hour = (new Date).getHours();
+var minute = (new Date).getMinutes();
+var second = (new Date).getSeconds();
+var unit = iu.unit.async('testAsync2');
+
+setTimeout(function() {
+	unit.equal(month, (new Date).getMonth(), 'Check month equal asynchronously');
+	unit.equal(year, (new Date).getYear(), 'Check year equal asynchronously');
+	unit.start();
+}, 2000);
+
+setTimeout(function() {
+	unit.equal(hour, (new Date).getHours(), 'Check hour equal asynchronously');
+	unit.equal(minute, (new Date).getMinutes(), 'Check minute equal asynchronously');
+	unit.start();
+}, 4000);
+
+setTimeout(function() {
+	unit.equal(second, (new Date).getSeconds(), 'Check second equal asynchronously');
+	unit.start();
+}, 6000);
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['snippet'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.snippet.js"></script>
+</head>
+<body>
+
+<div class="demo">
+	<div class="header"><span>CSS</span></div>
+	<div class="contents">
+		<pre id="snippet_css" class="demo_content">
+			@CHARSET "UTF-8";
+
+			/* font-family */
+			@font-face { 
+				font-family: 'ACaslon SemiboldItalic';
+				src: url('http://s.intsig.net/webintsig/fonts/acaslon_semibolditalic.eot');
+				src: url(http://s.intsig.net/webintsig/fonts/acaslon_semibolditalic.eot?#iefix) format('embedded-opentype'),
+				url('http://s.intsig.net/webintsig/fonts/acaslon_semibolditalic.woff') format('woff'),
+				url('http://s.intsig.net/webintsig/fonts/acaslon_semibolditalic.ttf') format('truetype');
+			}
+			.iu_snippet_zebra .iu_snippet_lines i:nth-child(2n),
+			.iu_snippet_zebra pre:nth-child(2n) {
+background-color: #F3F3F3;
+margin: 0px;
+				padding: 0px;
+				font-family: helvetica;
+				color: #000;
+				list-style-type: none
+			}
+			input[type="checkbox"]:focus, input[type='radio']:focus{
+				outline: 1px solid #F6B22B;
+				outline: none\9;
+			}
+		</pre>
+	</div>
+	<script type="text/javascript">
+		iu.snippet('#snippet_css', {
+			language : 'css'
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>JavaScript</span></div>
+	<div class="contents">
+		<pre id="snippet_javascript" class="demo_content">
+			var test = "my name is Test";
+
+			/**
+			 * multi-line comment
+			 * @return undefined
+			 * */
+			function Test() {
+				// comment
+				/* comment two */
+				console.log(test);
+
+				var a = '', b = {obj : function() {
+					$(document.body).bind('scroll', function() {
+						console.log('scroll');
+					});
+				}};
+
+				console.log("/* console.log() */");
+			}
+		</pre>
+	</div>
+	<script type="text/javascript">
+		iu.snippet('#snippet_javascript', {
+			language : 'javascript',
+			blend : true
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>PHP</span></div>
+	<div class="contents">
+		<pre id="snippet_php" class="demo_content">
+				$ar_url = parse_url($request_url);
+				# defined https
+				define('True', true);
+				$https = 'https';
+				// check scheme
+				if($ar_url['scheme'] == "$https");
+				{
+					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1);
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				}
+
+				/**
+				 * @param $name string
+				 * @return number
+				 * */
+				function hello($name) {
+					echo 'hello
+					';
+					return 1;
+				}
+				if(!empty($ar_param) and is_array($ar_param) && PDO::MYSQL_ATTR_USE_BUFFERED_QUERY == true)
+				{
+					$data = http_build_query($ar_param);
+				}
+				else
+				{
+					$data = $ar_param;
+				}
+		</pre>
+	</div>
+	<script type="text/javascript">
+		iu.snippet('#snippet_php', {
+			language : 'php'
+		});
+	</script>
+</div>
+</body>
+</html>

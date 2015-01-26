@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['spinner'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.spinner.js"></script>
+</head>
+<body>
+
+<div id="spinner_default_spinner" class="demo">
+	<div class="header"><span>Default Spinner</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<input type="text" />
+			<br/><br/>
+			<div style="font-size:14px;">
+				Prefix: $. <button type="button" style="visibility:hidden"></button> Suffix: #<br/>
+			</div>
+			<input type="text" />
+			<br/>
+			<input id="total" style="margin-top:4px"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+
+		iu.spinner('#spinner_default_spinner div.demo_content input:eq(0)');
+
+		iu.spinner('#spinner_default_spinner div.demo_content input:eq(1)', {
+				prefix : '$',
+				suffix : '#',
+				val : 1,
+				step : 0.02,
+				max : 10,
+				min : 5,
+				loop : true,
+				change : function(val) {
+					$('#total').val(
+						iu.spinner(this, 'prefix')
+
+						+ (val.replace('$', '').replace('#', '') * 3, 2)
+
+						+ iu.spinner(this, 'suffix')
+					);
+				}
+			});
+		});
+	</script>
+</div>
+
+<div id="spinner_vertical_spinner" class="demo">
+	<div class="header"><span>Vertical Spinner</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<input type="text" >
+			<br/>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.spinner('#spinner_vertical_spinner div.demo_content input:eq(0)', {
+			view : 'vertical',
+			// decimal : 2,
+			step : 0.01
+		});
+	</script>
+</div>
+
+<div id="spinner_custom_format" class="demo">
+	<div class="header"><span>Custom Format</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<input type="text" >
+			<br/>
+			<span id="time_number"></span>
+			<br>
+			<span id="time_string"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		/// expand spinner by offer two functions -- format and parse
+		iu.spinner('#spinner_custom_format div.demo_content input:eq(0)', {
+				val : (new Date).toTimeString().replace(/ .*$/, ''),
+				step : 1,
+				page : 60,
+				max : 23 * 60 *60 + 60 * 59 + 59,
+				min : 0,
+				loop : true,
+				correctAlways : false,
+				format : function(val) {  // format and parse are both required
+					var second = val % 60,
+						minute = parseInt((val / 60)) % 60 || 0,
+						hour = parseInt(val / (60 * 60)) || 0;
+
+					return 	(hour < 10 ? '0' + hour : hour)
+							+ ':' + (minute < 10 ? '0' + minute : minute)
+							+ ':' + (second < 10 ? '0' + second : second);
+				},
+				parse : function(string) {
+					string = string.split(':');
+
+					var hour = (parseInt((string[0] || '').substr(0, 2)) || 0),
+						minute = (parseInt((string[1] || '').substr(0, 2)) || 0),
+						second = (parseInt((string[2] || '').substr(0, 2)) || 0);
+
+					hour > 23 ? hour = 23 : 0;
+					minute > 60 ? minute = 60 : 0;
+					second > 60 ? second = 60 : 0;
+
+					return hour * 60 * 60
+							+ minute * 60
+								+ second;
+				},
+				change : function(time) {
+					$('#time_number').html(time);
+					$('#time_string').html(iu.spinner(this, 'parsedVal'));
+				}
+			});
+
+	</script>
+</div>
+
+<div id="spinner_timespinner" class="demo">
+	<div class="header"><span>Time Spinner</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<input type="text" >
+			<br>
+			<span id="timespinner_string"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		/// extend spinner to offer a timespinner widget
+		iu.widget('timespinner', 'spinner', {
+			format : function(val) {  // format and parse are both required
+				var second = val % 60,
+					minute = parseInt((val / 60)) % 60 || 0,
+					hour = parseInt(val / (60 * 60)) || 0;
+
+				return 	(hour < 10 ? '0' + hour : hour)
+						+ ':' + (minute < 10 ? '0' + minute : minute)
+						+ ':' + (second < 10 ? '0' + second : second);
+			},
+			parse : function(string) {
+				string = (string + '').split(':');
+
+				var hour = (parseInt((string[0] || '').substr(0, 2)) || 0),
+					minute = (parseInt((string[1] || '').substr(0, 2)) || 0),
+					second = (parseInt((string[2] || '').substr(0, 2)) || 0);
+
+				hour > 23 ? hour = 23 : 0;
+				minute > 60 ? minute = 60 : 0;
+				second > 60 ? second = 60 : 0;
+
+				return hour * 60 * 60
+						+ minute * 60
+							+ second;
+			},
+			options : {
+				step : 1,
+				page : 60,
+				max : 23 * 60 *60 + 60 * 59 + 59,
+				min : 0,
+				loop : true,
+				correctAlways : false
+			}
+		});
+
+		iu.timespinner('#spinner_timespinner div.demo_content input:eq(0)', 'view', 'vertical');
+
+		iu.timespinner('#spinner_timespinner div.demo_content input:eq(0)', 'change', function(val) {
+			$('#timespinner_string').html(val);
+		});
+
+		iu.timespinner('#spinner_timespinner div.demo_content input:eq(0)', (new Date).toTimeString().replace(/ .*$/, ''));
+	</script>
+</div>
+
+</body>
+</html>

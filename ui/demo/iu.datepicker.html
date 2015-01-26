@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		var css = ['datepicker'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.datepicker.js"></script>
+	<!-- <link rel="stylesheet" type="text/css" href="../theme/default/css/iu.datepicker.css"> -->
+</head>
+<body>
+
+<div class="demo">
+	<div class="header"><span>Default Datepicker</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<input id="input_date" value="2014-09-10" />
+			<input id="input_month" style="margin-left:100px;" />
+		</div>
+		<div class="demo_content iu_relative">
+			<input id="input_year" />
+			<input id="input_date2" style="margin-left:100px;" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		var a = iu.datepicker('#input_date', {
+			buttons : [
+				{
+					text : '明天',
+					click : function() {
+						var date = new Date,
+							year = date.getFullYear(),
+							month = date.getMonth() + 1;
+
+						date = date.getDate() + 1;
+						this.val(year, month, date);
+						return false;
+					}
+				}
+			],
+			change : function(val) {
+				// console.log(['datepicker change', val]);
+			},
+			persist : true
+		});
+
+		iu.datepicker('#input_month', {
+			start : 1,
+			view : 'month',
+			format : 'Y-m-d, 星期D'
+		});
+
+		iu.datepicker('#input_year', {
+			view : 'year'
+		});
+
+		d = iu.datepicker('#input_date2', {
+			start : 1,
+			months : 3,
+			show : true,
+			buttons : {
+				'今天' : function () {
+					this.today();
+					return false;
+				},
+				'取消' : function() {
+					this.cancel();
+				}
+			}
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Datepicker Trigger</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<input id="input_datepicker" /> <a id="input_datepicker_trigger" style="cursor:pointer">Click</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.datepicker('#input_datepicker', {
+			trigger : '#input_datepicker_trigger',
+			value : '2014-07-02'
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Month Trigger</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<input id="monthpicker" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.datepicker('#monthpicker', {
+			monthPicker : true,
+			format : 'Y-m',
+			view : 'month',
+			change : function(val) {
+				console.log(['monthPicker change', val]);
+			}
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>TimePicker Datepicker</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative" style="padding-bottom:240px">
+			<input id="datepicker_timerpicker" value="2012-12-12 12:20"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+		c = iu.datepicker('#datepicker_timerpicker', {
+			timePicker : true,
+			buttonsAlign : 'left',
+			i18nHour : ' 小时',
+			i18nMinute : ' Minute'
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Inline Datepicker</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<input id="datepicker_inline" style="display:block"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.datepicker('#datepicker_inline', {
+			inline : true,
+			others : true
+		});
+	</script>
+</div>
+
+</body>
+</html>

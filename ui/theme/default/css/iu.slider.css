@@ -1,0 +1,66 @@
+/* iu.slider.css */
+.iu_slider {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	height: 23px;
+}
+
+.iu_slider_smaller {
+	position: absolute;
+	left: 0px;
+	top: 3px;
+	width: 16px;
+	height: 16px;
+	background-image: url(../images/slider_smaller.png);
+}
+
+.iu_slider_smaller:hover {
+	cursor: pointer;
+	background-image: url(../images/slider_smaller_hover.png);
+}
+
+.iu_slider_bar {
+	position: relative;
+	left: 25px;
+	height: 5px;
+	background-color: #ccc;
+	width: 100px;
+}
+
+.iu_slider_range {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width: 0px;
+	height: 5px;
+	background-color: #666;
+}
+
+.iu_slider_handle {
+	position: absolute;
+	top: -10px;
+	height: 15px;
+	width: 6px;
+	background-color: #666;
+	border-radius: 3px;
+	background-clip: padding-box;
+}
+
+.iu_slider_handle:hover {
+	cursor: pointer;
+}
+
+.iu_slider_bigger {
+	position: absolute;
+	right : 0px;
+	top: 3px;
+	width: 16px;
+	height: 16px;
+	background-image: url(../images/slider_bigger.png);
+}
+
+.iu_slider_bigger:hover {
+	cursor: pointer;
+	background-image: url(../images/slider_bigger_hover.png);
+}

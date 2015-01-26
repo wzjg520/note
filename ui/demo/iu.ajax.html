@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget validator</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		var css = ['validator'];
+	</script>
+	<script src="../../is.app.core.js"></script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+	<script src="../js/iu.base.js"></script>
+</head>
+<body>
+	
+<div id="tip_tips" class="demo">
+	<div class="header"><span>Ajax</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<div style="padding:10px;border:4px solid #ccc;background:#fff; line-height:25px;">
+				<form action="/site/TestAjax" id="id_form_test">
+					验证数字：<input type="text" id="number" name="number"> <br>
+					验证位数：<input type="text" id="num" name="num"> <br>
+					验证邮箱：<input type="text" id="email" name="email"><br>
+					验证手机：<input type="text" id="mobile" name="mobile"><br>
+					验证URL：<input type="text" id="url" name="url"><br>
+					<button type="button" onclick="checkForm();">提交</button>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+			// 成功案例 ：http://www.devweizhan.com/test/ajax
+			
+			// php 页面书写方式
+			// 
+			// $data可以使字符串可以使数组
+			// 正确调用 WZLibAjax::convertData($data);.
+			// 
+			// $errno是错误号，根据错误号调用不同错误输出语言
+			// 错误调用 WZLibAjax::convertError($errno );  
+			
+			// 错误内容通过 php 输出到隐藏域
+			// getLangHtml($array), 
+
+			// 成功返回
+			function testSucess(){
+				isappAjax({
+				url: '/site/doajaxSuccess', //需要提交处理的URL地址
+				data: {'email':'abct@163.com'}, //提交数据格式 {'email': email}
+				type: 'post' //提交方式默认post
+				// dataType: "json",
+				}, function(data){
+					// alert(data);
+					$("#jsresult").append('成功......<br>');
+				}, function(errno, msg, langid){
+					alert(errno);
+				});
+			}
+
+			// 失败返回
+			function testFail(){
+				isappAjax({
+				url: '/site/doajaxFail', //需要提交处理的URL地址
+				data: {'email':'abct@163.com'}, //提交数据格式 {'email': email}
+				type: 'post' //提交方式默认post
+				// dataType: "json",
+				}, function(data){
+
+				}, function(errno, msg, langid){
+
+					$("#jsresult").append('失败......<br>');
+
+					// 提前预封装的错误号 
+					// '>0'：服务器忙 
+					// '-105'：token 失效
+					// '-3' : 登陆超时
+					
+				});
+			}
+	</script>
+</div>
+</body>
+</html>

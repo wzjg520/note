@@ -1,0 +1,28 @@
+/* iu.snav.css */
+.iu_snav{
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	top: 20px;
+	border:1px solid black;
+	box-shadow: 0 0 4px black;
+	background-color: white;
+}
+
+.iu_snav_li{
+	list-style: none;
+	padding: 4px;
+}
+
+.iu_snav_li:hover, .iu_snav_li.selected{
+	background-color: #6D7883;
+}
+
+.iu_snav_li:hover a, .iu_snav_li.selected a{
+	color: white;
+}
+
+.iu_snav_li>a{
+	text-decoration: none;
+	display: block;
+}

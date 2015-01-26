@@ -1,0 +1,74 @@
+/* iu.notice.css */
+.iu_notice{
+	height: 50px;
+	line-height: 50px;
+	position: absolute;
+	top: 62px;
+	width: 100%;
+	z-index: 2;
+	text-align: center;
+	background-color: #EDE1D3;
+	font-size: 20px;
+	color: #fff;
+	font-family: Helvetica,"微软雅黑";
+}
+
+.iu_notice_inner{
+	min-height: 40px;
+	line-height: 40px;
+	background-color: #EDE1D3;
+	padding: 3px 0;
+	font-size: 20px;
+	box-shadow:0 2px 7px 0 #aaa;
+	display:inline-block;
+	position:relative;
+	text-align:center;
+}
+
+.iu_notice_level_0 .iu_notice_icon{
+	display: none;
+}
+
+.iu_notice_icon{
+	display: inline-block;
+	background-repeat: no-repeat;
+	margin-left:20px;
+	background-position: 50% 50%;
+	vertical-align:top;
+}
+
+.iu_notice_icon_1{
+	
+}
+
+.iu_notice_icon_2{
+	
+}
+
+.iu_notice_text{
+	display: inline-block;
+	margin-left:10px;
+	margin-right:40px;
+	color:#fff;
+	vertical-align:top;
+}
+
+.iu_notice_level_0 .iu_notice_close{
+	display: block;
+}
+
+.iu_notice_close{
+	display: none;
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	right: 20px;
+	width: 16px;
+	height: 16px;
+	background: url(../images/notice_close.png) no-repeat;
+	cursor: pointer;
+}
+
+.iu_notice_close:hover{
+	background-image: url(../images/notice_close_hover.png);
+}

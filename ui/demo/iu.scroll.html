@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../theme/default/css/iu.scroll.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['scroll'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="../../third/jquery.nicescroll.min.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.scroll.js"></script>
+	<script src="../js/iu.drag.js"></script>
+</head>
+<body>
+
+<div id="scroll_default" class="demo">
+	<div class="header"><span>Tip</span></div>
+	<div class="contents" style="position:relative">
+		<div class="demo_content" style="position:relative;height:500px;width:60px;;border:4px solid black;padding:10px;background-color:green;color:white;">
+			start <br/>	2 <br/>	3 <br/> 4 <br/> 5 <br/> 6 <br/> 7 <br/> 8 <br/> 9 <br/> 10 <br/> 11 <br/> 12 <br/> 13 <br/> 14 <br/> 15 <br/> 16 <br/> 17 <br/>
+			a <br> b <br> c <br> d <br> e <br> f <br> g <br> h <br> i <br> j <br> k <br> l <br> m <br> n <br> o <br> p <br> q <br> r <br> s <br> t <br> u <br> v <br> w <br> x <br> y <br> z <br>
+			1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br> 0 <br>
+			一 <br> 二 <br> 三 <br> 四 <br> 五 <br> 六 <br> 7 <br> 8 <br> 9 <br> 零 <br>
+			a <br> b <br> c <br> d <br> e <br> f <br> g <br> h <br> i <br> j <br> k <br> l <br> m <br> n <br> o <br> p <br> q <br> r <br> s <br> t <br> u <br> v <br> w <br> x <br> y <br> z <br>
+			1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br> 0 <br>
+			一 <br> 二 <br> 三 <br> 四 <br> 五 <br> 六 <br> 7 <br> 8 <br> 9 <br> 零 <br>
+			end
+		</div>
+
+		<div class="demo_content" style="position:absolute;top:10px;right:10px;height:500px;width:60px;;border:4px solid black;padding:10px;background-color:green;color:white;">
+			start <br/>	2 <br/>	3 <br/> 4 <br/> 5 <br/> 6 <br/> 7 <br/> 8 <br/> 9 <br/> 10 <br/> 11 <br/> 12 <br/> 13 <br/> 14 <br/> 15 <br/> 16 <br/> 17 <br/>
+			a <br> b <br> c <br> d <br> e <br> f <br> g <br> h <br> i <br> j <br> k <br> l <br> m <br> n <br> o <br> p <br> q <br> r <br> s <br> t <br> u <br> v <br> w <br> x <br> y <br> z <br>
+			1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br> 0 <br>
+			一 <br> 二 <br> 三 <br> 四 <br> 五 <br> 六 <br> 7 <br> 8 <br> 9 <br> 零 <br>
+			a <br> b <br> c <br> d <br> e <br> f <br> g <br> h <br> i <br> j <br> k <br> l <br> m <br> n <br> o <br> p <br> q <br> r <br> s <br> t <br> u <br> v <br> w <br> x <br> y <br> z <br>
+			1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br> 0 <br>
+			一 <br> 二 <br> 三 <br> 四 <br> 五 <br> 六 <br> 7 <br> 8 <br> 9 <br> 零 <br>
+			end
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function () {
+			s = iu.scroll('#scroll_default .demo_content:eq(0)');
+
+			$('#scroll_default .demo_content:eq(1)')
+				.bind('mousewheel', function(e) {
+					console.log('native mousewheel')
+				})
+				.niceScroll();
+		});
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['menu'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.menu.js"></script>
+</head>
+<body>
+
+<div id="menu_default_popup" class="demo">
+	<div class="header"><span>Default Popup Menu</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<div class="account_set">用户名</div>
+			<ul class="account_menu">
+				<li>账户设置</li>
+				<li>修改密码</li>
+				<li>退出</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		// 两种调用方式
+		
+		// iu.menu('#menu_default_popup div.account_set', '#menu_default_popup ul.account_menu');
+
+		iu.menu('#menu_default_popup div.account_set', {
+			menu : {
+				'账户设置' : '/account/set',
+				'修改密码' : '/account/pwd',
+				'退出' : '/user/logout'
+			}
+		});
+	</script>
+</div>
+
+<div id="menu_fixed_popup" class="demo">
+	<div class="header"><span>Fixed Popup Menu</span></div>
+	<style type="text/css">
+		.custom_title{
+			color:red;
+			font-style: italic;
+			font-weight: bold;
+		}
+	</style>
+	<div class="contents">
+		<div class="demo_content fixed_menu">
+			<div class="fixed_menu_left">
+				<span>存款</span>
+				<ul>
+					<li>存100</li>
+					<li>存1000</li>
+					<li>存10000</li>
+					<li>存100000</li>
+				</ul>
+			</div>
+			<div class="fixed_menu_right">
+				<span>取款</span>
+				<ul>
+					<li>取100</li>
+					<li>取1000</li>
+					<li>取10000</li>
+					<li>取100000</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.menu('#menu_fixed_popup div.fixed_menu_left span', {
+			menu : '#menu_fixed_popup div.fixed_menu_left ul',
+			animate : 'fade',
+			view : 'auto' // default value
+		});
+
+		iu.menu('#menu_fixed_popup div.fixed_menu_right span', {
+			menu : '#menu_fixed_popup div.fixed_menu_right ul',
+			view : 'fixed'
+		});
+	</script>
+</div>
+
+<div id="menu_delay" class="demo">
+	<div class="header"><span>DelayIn DelayOut</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			Delay show 1000ms, <br/>
+			Delay hide 2000ms. <br/>
+			<div class="account_set">用户名</div>
+			<ul class="account_menu" style="top:90px;">
+				<li>账户设置</li>
+				<li>修改密码</li>
+				<li>退出</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.menu('#menu_delay div.account_set', {
+			menu : '#menu_delay ul.account_menu',
+			trigger : 'mouseenter',
+			animate : 'slide',
+			delayIn : 1000,
+			delayOut : 2000 /// default 800
+		});
+	</script>
+</div>
+
+<div id="menu_default_context" class="demo">
+	<div class="header"><span>Default Context Menu</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<div>Right-click</div>
+			<ul class="filelist">
+				<li><span class="iu_icon iu_icon_dir"></span><span class="filename">mp3</span><span class="filetype">-</span><span class="mtime">2013-6-24 19:13:42</span></li>
+				<li><span class="iu_icon iu_icon_dir"></span><span class="filename">svg</span><span class="filetype">-</span><span class="mtime">2013-6-24 19:13:42</span></li>
+				<li><span class="iu_icon iu_icon_dir"></span><span class="filename">exe</span><span class="filetype">-</span><span class="mtime">2013-6-24 19:13:42</span></li>
+				<li><span class="iu_icon iu_icon_txt"></span><span class="filename">down.txt</span><span class="filetype">20.13KB</span><span class="mtime">2013-6-24 19:13:42</span></li>
+				<li><span class="iu_icon iu_icon_unkown"></span><span class="filename">app.sql</span><span class="filetype">201.3KB</span><span class="mtime">2013-6-24 19:13:42</span></li>
+				<li><span class="iu_icon iu_icon_rar"></span><span class="filename">rich.rar</span><span class="filetype">2M</span><span class="mtime">2013-6-24 19:13:42</span></li>
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var lis = $('#menu_default_context ul.filelist li').bind('mouseenter', function() {
+			lis.removeClass('selected');
+			$(this).addClass('selected');
+		});
+
+		$('#menu_default_context ul.filelist').bind('mouseleave', function() {
+			if (iu.menu(this, 'isOpen')) {
+				return;
+			}
+
+			lis.removeClass('selected');
+		});
+
+		iu.menu('#menu_default_context ul.filelist', {
+			follow : true,
+			menu : [
+				{
+					text : 'Open',
+					enter : function(e, widget) {},
+					leave : function(e, widget) {},
+					click : function(e, widget) {}
+				},
+				{
+					text : 'Download',
+					click : function(e, widget) {}
+				},
+				, // menu seperater
+				{
+					text : 'Share',
+					menu : [
+						{
+							text : 'Facebook',
+							click : function(e, widget) {
+								alert('Share To Facebook')
+							}
+						},
+						{
+							text : 'Google+',
+							click : function(e, widget) {
+								alert('Share To Google+')
+							}
+						},
+						{
+							text : 'Twitter',
+							click : function(e, widget) {
+								alert('Share To Twitter+')
+							}
+						}
+					]
+				},
+				'custom_sep',
+				{
+					text : 'Move'
+				},
+				{
+					text : 'Rename'
+				}
+			]
+		});
+	</script>
+</div>
+
+<div id="menu_context_offset" class="demo">
+	<div class="header"><span>Context Menu Offset</span></div>
+	<div class="contents">
+		<div class="demo_content" style="height:100px;background-color:#78CFF5"></div>
+	</div>
+	<script type="text/javascript">
+		iu.menu('#menu_context_offset div.demo_content', {
+			follow : true,
+			trigger : 'rightclick',
+			menu : [
+				{
+					text : 'C盘',
+					menu : [
+						{
+							text : 'Program Files',
+							menu : [
+								{
+									text : 'CamCard',
+									menu : [
+										{
+											text : 'bin'
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			top : 20,
+			left : 40
+		});
+	</script>
+</div>
+
+<div id="menu_menu_icon" class="demo">
+	<div class="header"><span>Menu Icon</span></div>
+	<div class="contents">
+		<div class="demo_content" style="height:200px;background-color:#78CFF5"></div>
+	</div>
+	<style type="text/css">
+		.icon_download{
+			background-image: url(images/icon_download.png);
+		}
+		.icon_edit{
+			background-image: url(images/icon_edit.png);
+		}
+		.icon_delete{
+			background-image: url(images/icon_delete.png);
+		}
+	</style>
+	<script type="text/javascript">
+		iu.menu('#menu_menu_icon div.demo_content', {
+			follow : true,
+			trigger : 'rightclick',
+			menu : [
+				{
+					text : 'Download',
+					icon : 'icon_download'
+				},
+				{
+					text : 'Rename',
+					icon : 'icon_edit'
+				},
+				{
+					text : 'Delete',
+					icon : 'icon_delete'
+				}
+			]
+		});
+
+		/*style
+			.icon_download{
+				background-image: url(images/icon_download.png);
+			}
+			.icon_edit{
+				background-image: url(images/icon_edit.png);
+			}
+			.icon_delete{
+				background-image: url(images/icon_delete.png);
+			}
+		style*/
+	</script>
+</div>
+</body>
+</html>

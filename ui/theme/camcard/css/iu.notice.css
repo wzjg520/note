@@ -1,0 +1,92 @@
+/* iu.notice.css */
+.iu_notice{
+	position: absolute;
+	top:0;
+	left: 0;
+	height:0;
+	width: 100%;
+	text-align:center;
+}
+
+.iu_notice_inner{
+	min-height: 40px;
+	line-height: 40px;
+	min-width:100%;
+	background-color: #666;
+	padding:3px 0;
+	font-size: 13px;
+	box-shadow:0 2px 7px 0 #aaa;
+	display:inline-block;
+	position:relative;
+	text-align:left;
+}
+
+.iu_notice_level_0 .iu_notice_icon{
+	display: none;
+}
+
+.iu_notice_icon{
+	display: inline-block;
+	margin-left: 20px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	vertical-align:top;
+}
+
+.iu_notice_icon_1{
+	width: 23px;
+	height: 21px;
+	position: relative;
+	top:8px;
+	background-image: url(../images/notice_icon_1.png);
+}
+
+.iu_notice_icon_2{
+	width: 16px;
+	height: 16px;
+	position: relative;
+	top: 11px;
+	background-image: url(../images/notice_icon_2.png);
+}
+
+.iu_notice_level_3{
+	/* custom style */
+}
+.iu_notice_icon_3{
+	/* icon style */
+	/* default inline-block */
+	border:6px solid white;
+	border-right: none;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+	position:relative;
+	top:14px;
+}
+
+.iu_notice_text{
+	display: inline-block;
+	margin-left:10px;
+	margin-right:40px;
+	color: white;
+	vertical-align:top;
+}
+
+.iu_notice_level_0 .iu_notice_close{
+	display: block;
+}
+
+.iu_notice_close{
+	display: none;
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	right: 20px;
+	width: 16px;
+	height: 16px;
+	background: url(../images/notice_close.png) no-repeat;
+	cursor: pointer;
+}
+
+.iu_notice_close:hover{
+	background-image: url(../images/notice_close_hover.png);
+}

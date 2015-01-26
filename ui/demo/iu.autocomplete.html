@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['autocomplete'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.autocomplete.js"></script>
+	<script src="../js/iu.placeholder.js"></script>
+</head>
+<body>
+
+<div id="email_default_autocomplete" class="demo">
+	<div class="header"><span>AutoComplete</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative" style="background-color:#ccc;padding:20px 40px;height:200px;">
+			<input id="autocomplete" type="text" />
+			<span class="width100"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu('placeholder', '#autocomplete', 'Type "abc"');
+
+		iu.autocomplete('#autocomplete', [
+			'abc',
+			'abcde',
+			'abstract',
+			'at least',
+			'bad',
+			'dash',
+			'dot',
+			'extremely abstract',
+			'very abstract',
+			'don\'t do it'
+		]);
+	</script>
+</div>
+
+</body>
+</html>

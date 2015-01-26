@@ -1,0 +1,94 @@
+/* iu.spinner.css */
+.iu_spinner{
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	padding: 0 18px;
+	line-height: 16px;
+}
+
+.iu_spinner_down, .iu_spinner_up{
+	position: absolute;
+	top: 50%;
+	margin-top: -9px;
+	font-size: 12px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+.iu_spinner_down{
+	left:0;
+	background-image: url(../images/spinner_down.png);
+}
+
+.iu_spinner_up{
+	right: 0;
+	background-image: url(../images/spinner_up.png);
+}
+
+.iu_spinner_vertical{
+	padding: 0 17px 0 0;
+	border:1px solid #B9B9B8;
+}
+
+.iu_spinner_vertical input{
+	border:none;
+}
+
+.iu_spinner_vertical .iu_spinner_up, .iu_spinner_vertical .iu_spinner_down{
+	width: 16px;
+	height: 11px;
+	background: #FBFBFB;
+	left: auto;
+	right: 0;
+	margin-top: 0;
+}
+
+.iu_spinner_vertical .iu_spinner_up:hover, .iu_spinner_vertical .iu_spinner_down:hover{
+	background: #DBDBDB;
+}
+
+.iu_spinner_vertical .iu_spinner_up:hover .iu_spinner_up_text{
+	border-bottom-color: green;
+}	
+
+.iu_spinner_vertical .iu_spinner_down:hover .iu_spinner_down_text{
+	border-top-color: green;
+}
+
+.iu_spinner_vertical .iu_spinner_up_text, .iu_spinner_vertical .iu_spinner_down_text{
+	position: absolute;
+	border: 4px solid #454545;
+	left: 4px;
+}
+
+.iu_spinner_vertical .iu_spinner_up{
+	top:0;
+}
+
+.iu_spinner_vertical input{
+	border-right: none;
+}
+
+.iu_spinner_vertical .iu_spinner_up_text{
+	border-top: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	top: 3px;
+}
+
+.iu_spinner_vertical .iu_spinner_down{
+	top: auto;
+	bottom: 0;
+}
+
+.iu_spinner_vertical .iu_spinner_down_text{
+	border-bottom: none;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	top: 4px;
+}

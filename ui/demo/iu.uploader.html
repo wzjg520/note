@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.uploader.js"></script>
+	<script src="../js/iu.uploader.swf.js"></script>
+
+	<style type="text/css">
+	.btn_file{
+		background-color: #0fc5a4;
+		font-size: 13px;
+		color: #fff;
+		text-align: center;
+		border-radius: 4px;
+		background-clip: padding-box;
+		display: block;
+		cursor: pointer;
+		height: 25px;
+		width: 120px;
+		padding: 0 10px;
+		line-height: 25px;
+		min-width: 120px;
+	}
+	.btn_file:hover{
+		background: #36d4b4;
+	}
+	.contents img{
+		max-width: 160px;
+		max-height: 160px;
+	}
+	</style>
+</head>
+<body>
+
+<div class="demo">
+	<div class="header"><span>Single Uploader</span></div>
+	<div class="contents">
+		<div class="demo_content" style="padding: 40px">
+			<span id="single_uploader" class="btn_file">选择单个文件</span>
+		</div>
+		<div id="img_list"></div>
+	</div>
+	<script type="text/javascript">
+		iu.uploader('#single_uploader', {
+			url : '/public/ui/demo/iu.uploader.php',
+			extension : 'jpg,png',
+			autoUpload : true,
+			change : function(e) {
+				console.log(['files changed']);
+			},
+			submit : function(filename) {
+				console.log([filename + ' uploading ...']);
+			},
+			error : function(filename, type, errno) {
+				console.log([filename, type, errno]);
+			},
+			success : function(filename, data) {
+				console.log([filename + ' uploaded.', data]);
+				$('#img_list').append('<img src="' + data + '"/>');
+			}
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Multiple Uploader</span></div>
+	<div class="contents">
+		<div class="demo_content" style="padding: 40px">
+			<span id="multiple_uploader" class="btn_file">选择多个文件</span>
+		</div>
+		<div id="img_list_m"></div>
+	</div>
+	<script type="text/javascript">
+		iu.uploader('#multiple_uploader', {
+			url : '/public/ui/demo/iu.uploader.php',
+			multiple : true,
+			extension : 'jpg,png',
+			autoUpload : true,
+			change : function(e) {
+				console.log(['files changed']);
+			},
+			submit : function(filename) {
+				console.log([filename + ' uploading ...']);
+			},
+			error : function(filename, type, errno) {},
+			success : function(filename, data) {
+				console.log([filename + ' uploaded.', data]);
+				$('#img_list_m').append('<img src="' + data + '"/>');
+			}
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Flash Multiple Uploader</span></div>
+	<div class="contents">
+		<div class="demo_content" style="padding: 40px">
+			<span id="flash_uploader" class="btn_file">Flash 选择多个文件</span>
+		</div>
+		<div id="img_list_flash"></div>
+	</div>
+	<script type="text/javascript">
+		c = iu.uploader('#flash_uploader', {
+			url : '/public/ui/demo/iu.uploader.php',
+			swf : '../../../camscanner/js/flash/iu.uploader.swf',
+			multiple : true,
+			extension : 'jpg,png',
+			autoUpload : true,
+			// maxSize : 100034,
+			change : function(e) {
+				console.log(['files changed']);
+			},
+			submit : function(filename) {
+				console.log([filename + ' uploading ...']);
+			},
+			error : function(filename, type, errno) {
+				console.log(['iu.uploader error', filename, type, errno]);
+			},
+			success : function(filename, data) {
+				console.log([filename + ' uploaded.', data]);
+				$('#img_list_flash').append('<img src="' + data + '"/>');
+			}
+		});
+	</script>
+</div>
+</body>
+</html>

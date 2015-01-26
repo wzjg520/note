@@ -1,0 +1,161 @@
+/* iu.dialog.css */
+.iu_dialog_panel{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.iu_dialog_mask{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+.iu_dialog{
+	position: absolute;
+	background-color: white;
+	box-shadow: 0 5px 20px #aaa;
+	min-height: 40px;
+	min-width: 350px;
+	max-width: 750px;
+	overflow: auto;
+}
+
+.iu_dialog_title{
+	font-size: 24px;
+	padding: 45px 20px 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.iu_dialog_close{
+	position: absolute;
+	width: 21px;
+	height: 21px;
+	top: 10px;
+	right: 12px;
+	cursor: pointer;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-image: url(../images/dialog_close.png);
+}
+
+
+.iu_dialog_close_text{
+	display: none;
+	font-weight: bold;
+}
+
+.iu_dialog_close_text:hover{
+	text-shadow:0 0 4px #232;
+}
+
+.iu_dialog_content{
+	padding: 30px 20px 15px 20px;
+	overflow: auto;
+}
+
+.iu_dialog_buttons{
+	margin: 15px 20px 30px;
+}
+
+.iu_align_left .iu_dialog_button:first-child{
+	margin-left: 0;
+}
+
+.iu_align_right .iu_dialog_button:last-child{
+	margin-right: 0;
+}
+
+.iu_dialog_button{
+	display: inline-block;
+	width: 230px;
+	height: 38px;
+	line-height: 38px;
+	margin: 0 8px;
+	cursor: pointer;
+	text-align: center;
+	background-repeat: no-repeat;
+}
+
+.iu_dialog_button, .iu_dialog_button:hover{
+	text-decoration: none;
+}
+
+.iu_dialog_button_text{}
+
+.iu_dialog_button_1 {
+	background: url(../images/dialog_button_0.png);
+	color: #a1a1a1;
+	text-shadow: 0px 1px 0px #fff;
+	min-width: 40px;
+}
+
+.iu_dialog_button_1:hover {
+	background: url(../images/dialog_button_0_hover.png);
+}
+
+.iu_dialog_button_1:active {
+	background: url(../images/dialog_button_0_press.png);
+}
+
+.iu_dialog_button_0 {
+	background:url(../images/dialog_button_1.png);
+	text-shadow: 0px -1px 0px #000;
+	color: #fff;
+}
+
+.iu_dialog_button_0:hover {
+	background:url(../images/dialog_button_1_hover.png);
+}
+
+.iu_dialog_button_0:active {
+	background:url(../images/dialog_button_1_press.png);
+}
+
+.iu_dialog_button_disable{
+	cursor: default;
+}
+
+/* dialog extend start */
+.iu_dialogalert .iu_dialog_content{
+	text-align: center;
+}
+
+.iu_icon_dialog_alert{
+	width: 23px;
+	height: 21px;
+	background-image: url(../images/dialog_alert_icon.png);
+	position: relative;
+	top:4px;
+	margin-right: 10px;
+}
+
+.iu_dialogconfirm .iu_dialog_content{
+	text-align: center;
+}
+
+.iu_icon_dialog_confirm{
+	width: 23px;
+	height: 21px;
+	background-image: url(../images/dialog_alert_icon.png);
+	position: relative;
+	top:4px;
+	margin-right: 10px;
+}
+
+.iu_dialogprompt .iu_dialog_content{
+	text-align: center;
+}
+
+.iu_dialogprompt_title{
+	margin-right: 10px;
+}
+/* dialog extend end */

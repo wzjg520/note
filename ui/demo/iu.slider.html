@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['slider'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.slider.js"></script>
+</head>
+<body>
+<style>
+input[type=text]{
+	border:1px solid #959595;
+}
+input[type=button]{
+	
+}
+.demo_contents{
+	padding:0;
+}
+#id_slider{
+	width: 150px;
+}
+.show {
+	width: 100px;
+	height: 100px;
+	border: 1px solid #ccc;
+	background-color: #ff0000;
+	margin: 10px;
+}
+</style>
+<div class="demo">
+	<div class="header"><span>Slider</span></div>
+	<div class="demo_contents">
+		<div id="slider"></div>
+	</div>
+	<div class="show" id="show"></div>
+	<script type="text/javascript">
+	var width = $('#show').width(),
+		height = $('#show').height();
+
+	iu.slider('#slider', {
+		showBtn : true,
+		barWidth : 100,
+		multiple : 1,
+		change : function(value) {
+			$('#show').css({
+							'width' : (1 + value) * width + 'px',
+							'height' : (1 + value) * height + 'px'});
+		}
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>no Buttons</span></div>
+	<div class="demo_contents">
+		<div id="slider_nobtn"></div>
+	</div>
+	<div class="show" id="show_nobtn"></div>
+	<script type="text/javascript">
+	var width = $('#show_nobtn').width(),
+		height = $('#show_nobtn').height();
+
+	iu.slider('#slider_nobtn', {
+		showBtn : false,
+		barWidth : 100,
+		multiple : 1,
+		change : function(value) {
+			$('#show_nobtn').css({
+							'width' : (1 + value) * width + 'px',
+							'height' : (1 + value) * height + 'px'});
+		}
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>change Multiple</span></div>
+	<div class="demo_contents">
+		<div id="slider_change"></div>
+	</div>
+	<div class="show" id="show_change"></div>
+	<script type="text/javascript">
+	var width = $('#show_change').width(),
+		height = $('#show_change').height();
+
+	iu.slider('#slider_change', {
+		showBtn : true,
+		barWidth : 100,
+		handLeft : 50,
+		barHeight : 20,
+		handHeight : 30,
+		multiple : 5,
+		step : 0.05,
+		change : function(value) {
+			$('#show_change').css({
+							'width' : (1 + value) * width + 'px',
+							'height' : (1 + value) * height + 'px'
+						});
+		}
+	});
+	</script>
+</div>
+</body>
+</html>

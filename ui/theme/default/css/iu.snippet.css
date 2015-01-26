@@ -1,0 +1,85 @@
+/* iu.snippet.css */
+.iu_snippet {
+	position: relative;
+	border:1px solid #ccc;
+	padding: 4px;
+	line-height: 16px;
+}
+
+.iu_snippet i{
+	font-style: normal;
+}
+
+/* lines */
+.iu_snippet_lines{
+	position: absolute;
+	text-align: right;
+	border-right: 1px solid #ccc;
+	background: white;
+	z-index: 1;
+}
+
+.iu_snippet_lines i {
+	display: block;
+	padding: 0 8px 0 10px;
+	color: #aaa;
+	min-height: 16px;
+}
+
+/* codes */
+.iu_snippet_codes {
+	position: relative;
+	outline: none;
+	overflow: auto;
+}
+
+.iu_snippet_codes pre {
+	font-family:"Courier New";
+	font-size: 14px;
+	margin: 0;
+	padding: 0 8px;
+	min-height: 16px;
+}
+
+.iu_snippet_codes pre span{
+	display: inline;
+}
+
+/* add zebra color */
+.iu_snippet_zebra .iu_snippet_lines i:nth-child(2n), .iu_snippet_zebra pre:nth-child(2n) {
+	background-color: #F3F3F3;
+}
+
+/* iu_snippet.language.css */
+.iu_snippet_css .comment{color: #66B470}
+.iu_snippet_css .at{color: #0000C2}
+.iu_snippet_css .selector{font-style: italic;}
+.iu_snippet_css .value{color: #06960E}
+.iu_snippet_css .string{color: #E50866}
+.iu_snippet_css .color{color: #D80800}
+.iu_snippet_css .pseudo{color: #C5060B; font-style: italic}
+.iu_snippet_css .property{color: #6D79DE;}
+.iu_snippet_css .attr{font-style: italic}
+.iu_snippet_css .function{color: #3C4C8B}
+/* iu_snippet.language.css end */
+
+/* iu_snippet.language.javascript */
+.iu_snippet_javascript .keyword{color: #0000B5}
+.iu_snippet_javascript .function{color: #3C4C72}
+.iu_snippet_javascript .method{color: #3C4C72}
+.iu_snippet_javascript .string{color: #E50866}
+.iu_snippet_javascript .comment{color: #66B470}
+.iu_snippet_javascript .description{color: #0000B6}
+/* iu_snippet.language.javascript end */
+
+/* iu_snippet.language.php */
+.iu_snippet_php .keyword{color: #0000B5}
+.iu_snippet_php .class{color: #6D79DE}
+.iu_snippet_php .const{color: #C5060B; font-style: italic}
+.iu_snippet_php .function{color: #3C4C72}
+.iu_snippet_php .variable{color: #0306FF}
+.iu_snippet_php .method{color: #3C4C72}
+.iu_snippet_php .string{color: #D80800}
+.iu_snippet_php .comment{color: #66B470}
+.iu_snippet_php .description{color: #0000B6}
+/* iu_snippet.language.php end */

@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<style type="text/css">
+		input[type="text"] {
+			margin-right: 10px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['mselect'];
+	</script>
+
+	<script type="text/javascript" src="js/third.js"></script>
+	<script type="text/javascript" src="js/demo.js"></script>
+
+	<script type="text/javascript" src="../js/iu.base.js"></script>
+	<script type="text/javascript" src="../js/iu.mselect.js"></script>
+	<script type="text/javascript" src="../js/iu.promptemail.js"></script>
+	
+</head>
+<body>
+
+<div class="demo">
+	<div class="header">
+		<span>单选下拉菜单</span>
+		<span class="demo_title_source">代码</span>
+	</div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<span>change事件获取数据: </span><input type="text" id="ret"/>
+			<br/><br/>
+			<div id="demo_mselect"></div>
+			<br/>
+			<span>按钮宽度: </span><input type="text" id="buttonWidth"/><span>下拉菜单宽度: </span><input type="text" id="selectWidth"/>
+			<span>菜单左偏移量: </span><input type="text" id="leftDistance"/><input type="button" value="创建" id="id_btn"/>
+			<br/><br/>
+			<span>更换内容: </span><input type="text" id="id_content"/><input type="button" id="id_content_btn" value="更换"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		var select = iu.mselect('#demo_mselect', {
+			contents : [['0','abc'],['1','abc2'],['2','abc3'],['3','abc4'], ['4','bc1'], ['5','bc2'], ['6','bc3'], ['7','c1'], ['8','c2'], 
+						['9','c3'], ['10','c4'], ['11','d5'], ['12','d6'], ['13','d7'], ['14','d8']],
+			type : 'single_in',
+			defaultIndex : '1',
+			change : function(data){$('#ret').val(data);}
+		});	
+				
+		$('#id_btn').bind('click', function(){
+			var value = {};
+			value.btnwidth = $('#buttonWidth').val();
+			value.sltwidth = $('#selectWidth').val();
+			value.left = $('#leftDistance').val();
+			select.setOption('setStyle', value);
+		});
+		
+		$('#id_content_btn').bind('click', function(){
+			select.setOption('createContent', $('#id_content').val());
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header">
+		<span>多选下拉菜单</span>
+		<span class="demo_title_source">代码</span>
+	</div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<span>change事件获取数据: </span><input type="text" id="multiple_ret"/>
+			<br/><br/>
+			<div id="demo_mselect_multiple"></div>
+			<br/>
+			<span>按钮宽度: </span><input type="text" id="multiple_buttonWidth"/><span>下拉菜单宽度: </span><input type="text" id="multiple_selectWidth"/>
+			<span>菜单左偏移量: </span><input type="text" id="multiple_leftDistance"/><input type="button" value="创建" id="id_btn_multiple"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		var select = iu.mselect('#demo_mselect_multiple', {
+			contents : [['0','123'],['1','234'],['2','345'],['3','456']],
+			type : 'multiple_in',
+			btnwidth : 300,
+			sltwidth : 300,
+			left: 0,
+			defaultIndex : ['0', '1', '2'],
+			change : function(data){$('#multiple_ret').val(data);}
+		});
+			
+		$('#id_btn_multiple').bind('click', function(){
+			var value = {};
+			value.btnwidth = $('#multiple_buttonWidth').val();
+			value.sltwidth = $('#multiple_selectWidth').val();
+			value.left = $('#multiple_leftDistance').val();
+			select.setOption('setStyle', value);
+		});		
+		
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header">
+		<span>根据现有单选下拉框创建</span>
+		<span class="demo_title_source">代码</span>
+	</div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<span>change事件获取数据: </span><input type="text" id="select_ret"/>
+			<br/><br/>
+			<select id="id_select">
+				<option>123</option>
+				<option>234</option>
+				<option>345</option>
+				<option>456</option>
+				<option>567</option>
+				<option>678</option>
+				<option>789</option>
+				<option>901</option>
+			</select>
+			<br/>
+			<span>按钮宽度: </span><input type="text" id="s_buttonWidth"/><span>下拉菜单宽度: </span><input type="text" id="s_selectWidth"/>
+			<span>菜单左偏移量: </span><input type="text" id="s_leftDistance"/><input type="button" value="创建" id="id_select_btn"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		var select = iu.mselect('#id_select', {
+			zindex : 100,
+			change : function(data){$('#select_ret').val(data);}
+		});	
+			
+		$('#id_select_btn').bind('click', function(){
+			var value = {};
+			value.btnwidth = $('#s_buttonWidth').val();
+			value.sltwidth = $('#s_selectWidth').val();
+			value.left = $('#s_leftDistance').val();
+			select.setOption('setStyle', value);
+		});
+		
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header">
+		<span>根据现有多选下拉框创建</span>
+		<span class="demo_title_source">代码</span>
+	</div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<span>change事件获取数据: </span><input type="text" id="multiple_select_ret"/>
+			<br/><br/>
+			<select id="id_multiple_select" multiple="multiple">
+				<option value="q">123</option>
+				<option value="q1">234</option>
+				<option value="q2">345</option>
+				<option value="q3">456</option>
+				<option value="q4">567</option>
+				<option value="q5">678</option>
+				<option value="q6">789</option>
+				<option value="q7">901</option>
+			</select>
+			<br/>
+			<span>按钮宽度: </span><input type="text" id="ms_buttonWidth"/><span>下拉菜单宽度: </span><input type="text" id="ms_selectWidth"/>
+			<span>菜单左偏移量: </span><input type="text" id="ms_leftDistance"/><input type="button" value="创建" id="id_ms_btn"/>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		var select = iu.mselect('#id_multiple_select', {
+			change : function(data){},
+			close : function(data){$('#multiple_select_ret').val(data);}
+		});	
+			
+		$('#id_ms_btn').bind('click', function(){
+			var value = {};
+			value.btnwidth = $('#ms_buttonWidth').val();
+			value.sltwidth = $('#ms_selectWidth').val();
+			value.left = $('#ms_leftDistance').val();
+			select.setOption('setStyle', value);
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header">
+		<span>移动端单选下拉框</span>
+		<span class="demo_title_source">代码</span>
+	</div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<span>change事件获取数据: </span><input type="text" id="mobile_ret"/>
+			<br/><br/>
+			<div id="id_mobile_select"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		var select = iu.mselect('#id_mobile_select', {
+			contents : [['0','123'],['1','234'],['2','345'],['3','456']],
+			type : 'single_out',
+			defaultIndex : '1',
+			mobile : true,
+			sltwidth : 200,
+			change : function(data){$('#mobile_ret').val(data);}
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header">
+		<span>移动端多选下拉框</span>
+		<span class="demo_title_source">代码</span>
+	</div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+			<span>change事件获取数据: </span><input type="text" id="multiple_mobile_ret"/>
+			<br/><br/>
+			<div id="id_mobile_multiple"></div>
+			<br/>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		var select = iu.mselect('#id_mobile_multiple', {
+			contents : [['0','123'],['1','234'],['2','345'],['3','456']],
+			type : 'multiple_out',
+			defaultIndex : '1',
+			mobile : 1,
+			sltwidth : 200,
+			change : function(data){$('#multiple_mobile_ret').val(data);}
+		});	
+	});
+	</script>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+/* iu.mselect.css */
+
+.iu_mselect_system_select {
+	display:inline-block;	
+	position: relative;	
+	border: 1px solid #ddd;
+	font-weight: normal;
+	color:#555555;
+	cursor:default;
+	height: 100%;
+	line-height: 30px;
+}
+
+.iu_mselect_system_select option {
+	height:	20px;
+	line-height: 20px;
+}
+
+.iu_mselect_frame {
+	position: relative;	
+	display:inline-block;
+	font-size: 12px;
+}
+
+.iu_mselect_button{
+	border: 1px solid #ddd;
+	font-weight: normal;
+	color:#555555;
+	padding:5px 5px 5px 10px;
+	cursor:default;
+	position: relative;
+	text-align:left;
+	background-image: url(../images/select_button_bg.png);
+	background-repeat: repeat-x;
+	background-size:100% 100%;
+	height:25px;
+}
+
+.iu_mselect_text {
+	display:inline-block;	
+	word-break: break-all;
+	text-align: left;
+	line-height: 25px;
+}
+
+.iu_mselect_triangle_down {
+	background-image:url(../images/select_btn_triangle.png);
+	width:10px;
+	height:13px;
+	display:inline-block;
+	cursor: pointer;
+	position:absolute;
+	top: 30%;
+	right: 8px;
+}
+
+.iu_mselect_triangle_up {
+	background-image:url(../images/select_btn_triangle.png);
+	width:10px;
+	height:13px;
+	display:inline-block;
+	cursor: pointer;
+	position:absolute;
+	top: 30%;
+	right: 8px;
+}
+
+.iu_mselect_button:hover{
+	border-color:#ddd;
+	background-image: url(../images/select_button_bg_hover.png);
+	color: #212121;
+}
+
+.iu_mselect_select{
+	padding:3px 8px 3px 0px;
+	max-height:200px;
+	border:1px solid #ccc;
+	display:none;
+	overflow:auto;
+	background-color: #fff;
+	position:absolute;
+	top: 100%;
+	z-index: 20;
+	text-align:left;
+}
+
+.iu_mselect_option{
+	border: 1px solid transparent;
+	padding: 3px;
+	margin: 5px 0px;
+	cursor:default;
+
+}
+
+.iu_mselect_option_selected {
+	border-color: #ddd;
+	background-color:#f2f2f8;
+	padding: 3px;
+	margin: 5px 0px;
+}
+
+.iu_mselect_option_hover{
+	border-color:#ddd;
+	background-color:#008dd0;
+	padding: 3px;
+	margin: 5px 0px;
+	color: #fff;
+}
+
+.iu_mselect_selected .iu_mselect_select{
+	display:block;
+}
+
+.iu_mselect_selected .iu_mselect_button{
+	background-color:#fff;
+	color: #555555;
+}

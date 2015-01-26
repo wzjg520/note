@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['notice'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.notice.js"></script>
+</head>
+<body>
+
+<div id="notice_default_notice" class="demo">
+	<div class="header"><span>Default Notice</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<input type="button" value="Show Default Notice" onClick="showNoticeDefault()" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		function showNoticeDefault() {
+			iu.notice('#notice_default_notice div.demo_content', 'Warn');
+		}
+
+		// showNoticeDefault()
+	</script>
+</div>
+
+<div id="notice_fill_parent" class="demo">
+	<div class="header"><span>Fill Parent Notice</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<input type="button" value="Show Fill Parent Notice" onClick="showFillParent()" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		function showFillParent() {
+			iu.notice('#notice_fill_parent div.demo_content input', {
+				text : 'Fill Parent Notice',
+				fill : true
+			});
+		}
+
+		// showNoticeDefault()
+	</script>
+</div>
+
+<div id="notice_success_notice" class="demo">
+	<div class="header"><span>Success Notice</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<input type="button" value="Show Success Notice" onClick="showNoticeSuccess()" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		function showNoticeSuccess() {
+			iu.notice('#notice_success_notice div.demo_content input', 'Upload Ok', 2);
+		}
+
+		// showNoticeSuccess()
+	</script>
+</div>
+
+<div id="notice_auto_close" class="demo">
+	<div class="header"><span>Auto Hide</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<input type="button" value="Auto Close" onClick="showNoticeHide()" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		function showNoticeHide() {
+			iu.notice('#notice_auto_close div.demo_content input', {
+				text : 'Server busy, please try again later.',
+				autoHide : false
+			});
+		}
+
+		// showNoticeHide()
+	</script>
+</div>
+
+<div id="notice_relative_caller" class="demo">
+	<div class="header"><span>Relative Caller</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative" style="height:80px">
+			<input type="button" value="Relative Caller" onClick="showNoticeRelative()" />
+		</div>
+	</div>
+	<style type="text/css">
+		.custom_notice{
+			color:red;
+			font-style: italic;
+		}
+	</style>
+	<script type="text/javascript">
+		var level = 0;
+
+		function showNoticeRelative() {
+			iu.notice('#notice_relative_caller div.demo_content input', {
+				text : level % 2 ? 'Server busy.' : 'Server busy, please try again later.',
+				css : 'custom_notice',
+				langid : null,
+				align : 'right',
+				width : 'auto',
+				level : level++ % 3
+			});
+		}
+
+		// showNoticeAppend()
+	</script>
+</div>
+
+<div id="notice_custom_icon" class="demo">
+	<div class="header"><span>Custom Icon</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative" style="height:80px;">
+			<input type="button" value="Custom Icon" onClick="showNoticeIcon()" />
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function showNoticeIcon() {
+			iu.notice('#notice_custom_icon div.demo_content input', {
+				autoHide : false, // show close button
+				text : 'Look for help?',
+				level : 3 // custom level, default level = 0|1|2
+			});
+		}
+
+		/*style
+			.iu_notice_level_3{
+				// custom style
+			}
+			.iu_notice_icon_3{
+				// icon style
+				// default inline-block
+				border:6px solid white;
+				border-right: none;
+				border-top-color: transparent;
+				border-bottom-color: transparent;
+			}
+		style*/
+	</script>
+</div>
+
+<div id="notice_min_width" class="demo">
+	<div class="header"><span>Min Width</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative" style="height:80px;">
+			<input class="demo_input" type="text" id="min_width" placeholder="输入一个数字，notice将以该值作为最小宽度" style="z-index:0"><br><br><input type="button" value="Min Width" onClick="showMinWidth()" />
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function showMinWidth() {
+			var cur_width = $('#min_width').val();
+			iu.notice('#notice_min_width div.demo_content input:eq(0)', {
+				autoHide : false, // show close button
+				text : 'Test Min Width!',
+				level : 1, // custom level, default level = 0|1|2
+				width : cur_width
+			});
+		}
+
+		/*style
+			.iu_notice_level_3{
+				// custom style
+			}
+			.iu_notice_icon_3{
+				// icon style
+				// default inline-block
+				border:6px solid white;
+				border-right: none;
+				border-top-color: transparent;
+				border-bottom-color: transparent;
+			}
+		style*/
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['player'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.player.js"></script>
+</head>
+<body>
+<style>
+input[type=text]{
+	border:1px solid #959595;
+}
+input[type=button]{
+	
+}
+.demo_contents{
+	padding:0;
+}
+</style>
+<div class="demo">
+	<div class="header"><span>Slide</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+            <div class="demo_player_img demo_player_img_0" id="player">
+            </div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var player;
+	$(function() {
+		player=iu.player('#player', {
+			content : ['<div class="demo_player_img demo_player_img_0"></div>','<div class="demo_player_img demo_player_img_1"></div>','<div class="demo_player_img demo_player_img_2"></div>','<div class="demo_player_img demo_player_img_3"></div>','<div class="demo_player_img demo_player_img_4"></div>'],
+			//width : 1000,
+			//height : 389,
+			animate : 'slide',
+			auto : true,
+			buttons : true,
+			points : true
+		});
+		player.resize(500,200);
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Fade</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+            <div class="demo_player_img demo_player_img_0" id="player_fade"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		iu.player('#player_fade', {
+			content : ['<div class="demo_player_img demo_player_img_0"></div>','<div class="demo_player_img demo_player_img_1"></div>','<div class="demo_player_img demo_player_img_2"></div>','<div class="demo_player_img demo_player_img_3"></div>','<div class="demo_player_img demo_player_img_4"></div>'],
+			//width : 1000,
+			//height : 389,
+			animate : 'fade',
+			auto : true,
+			buttons : true,
+			points : true
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>No Buttons</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+            <div class="demo_player_img demo_player_img_0" id="player_nobtns"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		iu.player('#player_nobtns', {
+			content : ['<div class="demo_player_img demo_player_img_0"></div>','<div class="demo_player_img demo_player_img_1"></div>','<div class="demo_player_img demo_player_img_2"></div>','<div class="demo_player_img demo_player_img_3"></div>','<div class="demo_player_img demo_player_img_4"></div>'],
+			//width : 1000,
+			//height : 389,
+			animate : 'slide',
+			auto : true,
+			buttons : false,
+			points : true
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>No Points</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+            <div class="demo_player_img demo_player_img_0" id="player_nopoints"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		iu.player('#player_nopoints', {
+			content : ['<div class="demo_player_img demo_player_img_0"></div>','<div class="demo_player_img demo_player_img_1"></div>','<div class="demo_player_img demo_player_img_2"></div>','<div class="demo_player_img demo_player_img_3"></div>','<div class="demo_player_img demo_player_img_4"></div>'],
+			//width : 1000,
+			//height : 389,
+			animate : 'slide',
+			auto : true,
+			buttons : true,
+			points : false
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>No Auto</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+            <div class="demo_player_img demo_player_img_0" id="player_noauto"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		iu.player('#player_noauto', {
+			content : ['<div class="demo_player_img demo_player_img_0"></div>','<div class="demo_player_img demo_player_img_1"></div>','<div class="demo_player_img demo_player_img_2"></div>','<div class="demo_player_img demo_player_img_3"></div>','<div class="demo_player_img demo_player_img_4"></div>'],
+			//width : 1000,
+			//height : 389,
+			animate : 'slide',
+			auto : false,
+			buttons : true,
+			points : true
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>More Child</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+            <div class="demo_player_img2 demo_player_img2_0" id="player_morechild"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		iu.player('#player_morechild', {
+			content : ['<div class="demo_player_img2 demo_player_img2_0"></div>','<div class="demo_player_img2 demo_player_img2_1"></div>','<div class="demo_player_img2 demo_player_img2_2"></div>','<div class="demo_player_img2 demo_player_img2_3"></div>','<div class="demo_player_img2 demo_player_img2_4"></div>','<div class="demo_player_img2 demo_player_img2_5"></div>','<div class="demo_player_img2 demo_player_img2_6"></div>','<div class="demo_player_img2 demo_player_img2_7"></div>'],
+			//width : 1000,
+			//height : 389,
+			animate : 'slide',
+			auto : true,
+			buttons : true,
+			points : true,
+			childnum : 3,
+			childmargin : 10,
+			position: 'center'
+		});
+	});
+	</script>
+</div>
+
+</body>
+</html>

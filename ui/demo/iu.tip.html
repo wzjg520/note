@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<link rel="stylesheet" type="text/css" href="../theme/default/css/iu.tip.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['tip', 'spinner'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.tip.js"></script>
+	<script src="../js/iu.spinner.js"></script>
+</head>
+<body>
+
+<div id="tip_tips" class="demo">
+	<div class="header"><span>Tip</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<div style="padding:10px;border:4px solid #ccc;background:green;">
+				<div class="demo_tip_inputs">
+					<div>
+						<label>Tip top : </label>
+						<input id="tip_top"/>
+					</div>
+					<div>
+						<label>Tip left : </label>
+						<input id="tip_left"/>
+					</div>
+				</div>
+				<div id="demo_tip" class="demo_tip" style="width:300px;margin:60px auto;border:8px solid #ccc;">众银行提前20天用完了放贷指标，再面对监管部门严厉的半年考核，也就丧失了“垫资”应付考核的能力。
+					<button onclick="showTipNext()">Next</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu('spinner', '#tip_tips div.demo_tip_inputs input', {
+			min : -100,
+			max : 100,
+			loop : true,
+			// view : 'vertical',
+			value : 0
+		});
+
+		iu('spinner', '#tip_top', 'change', function(val) {
+			iu.tip('#demo_tip', 'top', val);
+		});
+
+		iu('spinner', '#tip_left', 'change', function(val) {
+			iu.tip('#demo_tip', 'left', val);
+		});
+
+		iu.tip('#demo_tip', {
+			text : '提前放贷',
+			hideTrigger : false,
+			animate : 'fade'
+		});
+
+		iu.tip(getOffset());
+
+		var position = [
+				'top|left',
+				'top|center',
+				'top|right',
+				'right|top',
+				'right|center',
+				'right|bottom',
+				'bottom|right',
+				'bottom|center',
+				'bottom|left',
+				'left|bottom',
+				'left|center',
+				'left|top'
+			],
+			counter = 1;
+
+		function showTipNext() {
+			iu.tip('#demo_tip', getOffset());
+			iu.tip('#demo_tip', 'position', position[ counter++ % position.length ]);
+		}
+
+		function getOffset() {
+			return {
+				top 	: iu('spinner', '#tip_top', 'val'),
+				left 	: iu('spinner', '#tip_left', 'val')
+			}
+		}
+	</script>
+</div>
+
+<div id="tip_tips" class="demo">
+	<div class="header"><span>Title Tip</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<label>用户名: <input class="input" title="请输入用户名" /></label>
+			<br>
+			<label>密码: <input class="input" title="请输入密码" type="password" ></label>
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.tip('.input', {
+			position : 'bottom|left',
+			delayIn : 1000,
+			delayOut : 2000
+		});
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+/* iu.spinner.css */
+.iu_spinner{
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	padding: 0 18px 0 16px;
+	line-height: 16px;
+	border: 1px solid #B9B9B8;
+	background-color: white;
+}
+
+.iu_spinner input{
+	border:none;
+	/*outline:none;*/
+}
+
+.iu_spinner_down, .iu_spinner_up{
+	position: absolute;
+	top: 50%;
+	margin-top: -11px;
+	font-size: 12px;
+	width: 16px;
+	height: 100%;
+	cursor: pointer;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+.iu_spinner_down{
+	left:0;
+	background-image: url(../images/spinner_down.png);
+}
+
+.iu_spinner_down:hover{
+	background-image: url(../images/spinner_down_hover.png);
+}
+
+.iu_spinner_up{
+	right: 0;
+	background-image: url(../images/spinner_up.png);
+}
+
+.iu_spinner_up:hover{
+	background-image: url(../images/spinner_up_hover.png);
+}
+
+.iu_spinner_vertical{
+	padding: 0 15px 0 0;
+	border:1px solid #B9B9B8;
+}
+
+.iu_spinner_vertical .iu_spinner_up, .iu_spinner_vertical .iu_spinner_down{
+	width: 14px;
+	height: 10px;
+	left: auto;
+	right: 0;
+}
+
+.iu_spinner_vertical .iu_spinner_up{
+	background-image: url(../images/spinner_vertical_up.png);
+}
+
+.iu_spinner_vertical .iu_spinner_up:hover{
+	background-image: url(../images/spinner_vertical_up_hover.png);
+}
+
+.iu_spinner_vertical .iu_spinner_down{
+	top: auto;
+	bottom: 0;
+	background-image: url(../images/spinner_vertical_down.png);
+}
+
+.iu_spinner_vertical .iu_spinner_down:hover{
+	z-index: 1;
+	background-image: url(../images/spinner_vertical_down_hover.png);
+}

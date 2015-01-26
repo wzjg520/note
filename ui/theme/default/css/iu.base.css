@@ -1,0 +1,55 @@
+/* iu.base.css */
+
+html .iu_none{
+	display: none;
+}
+
+html .iu_hidden{
+	visibility: hidden;
+}
+
+html .iu_overflow_hidden{
+	overflow: hidden;
+}
+
+html .iu_absolute{
+	position: absolute;
+}
+
+html .iu_relative{
+	position: relative;
+}
+
+html .iu_align_left{
+	text-align: left;
+}
+
+html .iu_align_center{
+	text-align: center;
+}
+
+html .iu_align_right{
+	text-align: right;
+}
+
+html .iu_clear{
+	clear: both;
+}
+
+html .iu_float_left{
+	float: left;
+}
+
+html .iu_float_right{
+	float: right;
+}
+
+html .iu_nowrap{
+	white-space: nowrap;
+}
+
+html .iu_icon{
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}

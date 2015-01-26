@@ -1,0 +1,67 @@
+/* iu.unit.css */
+.iu_unit{
+	border: 1px solid #F39800;
+	margin: 4px;
+	border-radius: 4px;
+	font-size: 14px;
+	font-family: 'Courier New';
+}
+
+.iu_unit i{
+	font-style: normal;
+}
+
+.iu_unit_head{
+	border-bottom: 1px solid #F39800;
+}
+
+.iu_unit_ua{
+	background: #F39800;
+	color: white;
+	padding: 4px;
+}
+
+.iu_unit_total{
+	padding: 4px;
+}
+
+.iu_unit_sum{}
+
+.iu_unit_passed{
+	color: green;
+}
+
+.iu_unit_failed{
+	color: red;
+}
+
+.iu_unit_body{
+	padding: 4px;
+}
+
+.iu_unit_suite_head{}
+
+.iu_unit_suite_body{
+	text-indent: 2em;
+	margin: 0;
+	padding: 0;
+}
+
+.iu_unit_description{
+	font-size: 12px;
+	margin-left: 2em;
+}
+
+.iu_unit_detail{
+	text-indent: 5em;
+}
+
+.iu_unit_source{
+	vertical-align: top;
+}
+
+.iu_unit_source > i{
+	display: inline-block;
+	text-indent: 0;
+	color: red;
+}

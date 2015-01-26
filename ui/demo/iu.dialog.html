@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['dialog'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.dialog.js"></script>
+	<script src="../js/iu.drag.js"></script>
+</head>
+<body>
+
+<div id="dialog_default_dialog" class="demo">
+	<div class="header"><span>Dialog</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<p><input type="button" value="Click" onclick="showDefaultDialog()" /> 从其组织结构、资金来源、宣传口径来看，官方派头十足</p>
+			<p>众所周知，在中国大陆某机构或公司若前冠“中国”二字，是非常难注册，且和政府部门有着千丝万缕的联系。所以，当“中国动态调查委员会”这个组织出现的时候，非常有唬人的功用。</p>
+			<p>在2013年之前，“中调委”还不叫现在这个名字，而是叫“国内动态调查委员会”（以下简称“国调委”）。实际上，“中调委”和“国调委”是一套人马两块牌子。从网上曝光的一份2010年的“国调委”工作章程来看，它生怕别人不知道其和政府的关系，自称宗旨是“执行党的原则、提供决策依据，下设学术动态调查局、社会动态调查局、经济动态调查局、反腐动态调查局、秘书局、廉政动态调查局、商业动态调查局、保险动态调查局，办公室、机要处等委直属机关。”</p>
+			<p>
+				<input type="button" value="No Mask" onclick="showDefaultDialog(false)" />
+				<input type="button" value="Mask Opacity 0.2" onclick="showDefaultDialog(null, 0.2)" />
+				<input type="button" value="Mask Color red" onclick="showDefaultDialog('red', 0.5)" />
+			</p>
+			<p>
+				<input type="button" value="A Button" onclick="showDialogButtons(1)" />
+				<input type="button" value="Ok and Cancel" onclick="showDialogButtons(2)" />
+				<input type="button" value="Align Right" onclick="showDialogButtons(3)" />
+			</p>
+		</div>
+		<div id="dialog_demo1" style="display:none">
+			<p><input type="button" value="Click" onclick="showDefaultDialog()" /> 从其组织结构、资金来源、宣传口径来看，官方派头十足</p>
+			<p>众所周知，在中国大陆某机构或公司若前冠“中国”二字，是非常难注册，且和政府部门有着千丝万缕的联系。所以，当“中国动态调查委员会”这个组织出现的时候，非常有唬人的功用。</p>
+			<p>在2013年之前，“中调委”还不叫现在这个名字，而是叫“国内动态调查委员会”（以下简称“国调委”）。实际上，“中调委”和“国调委”是一套人马两块牌子。从网上曝光的一份2010年的“国调委”工作章程来看，它生怕别人不知道其和政府的关系，自称宗旨是“执行党的原则、提供决策依据，下设学术动态调查局、社会动态调查局、经济动态调查局、反腐动态调查局、秘书局、廉政动态调查局、商业动态调查局、保险动态调查局，办公室、机要处等委直属机关。”</p>
+			<p>
+				<input type="button" value="No Mask" onclick="showDefaultDialog(false)" />
+				<input type="button" value="Mask Opacity 0.2" onclick="showDefaultDialog(null, 0.2)" />
+				<input type="button" value="Mask Color red" onclick="showDefaultDialog('red', 0.5)" />
+			</p>
+			<p>
+				<input type="button" value="A Button" onclick="showDialogButtons(1)" />
+				<input type="button" value="Ok and Cancel" onclick="showDialogButtons(2)" />
+				<input type="button" value="Align Right" onclick="showDialogButtons(3)" />
+			</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function showDefaultDialog(mask, opacity) {
+			// iu.dialog('#dialog_default_dialog div.demo_content', 'show', true);
+			if (mask !== false) {
+				mask == null ? mask = 'black' : 0;
+				opacity == null ? opacity = 0.5 : 0;
+			}
+
+			iu.dialog('#dialog_demo1', {
+				title : '从其组织结构、资金来源、宣传口径来看，官方派头十足',
+				buttons : [
+					{
+						text : '确定',
+						css : 'button_ok'
+					},
+					{
+						text : '取消'
+					}
+				],
+				buttonsAlign : 'right',
+				mask : mask,
+				opacity : opacity,
+				show : true,
+				init : function() {
+				}
+			});
+		}
+
+		function showDialogButtons(buttons) {
+			var align = 'center'; // $.fn.dialog(options), default 'center'
+
+			if (buttons == 1) {
+				buttons = {
+					Ok : iu.tool.noop
+				};
+			} else if (buttons == 2) {
+				buttons = {
+					Ok : function(e) {
+						alert('Ok');
+					},
+					Cancel : function(e ) {
+						alert('return false. The dialog won\'t be closed.');
+						return false;
+					}
+				};
+			} else {
+				buttons = [
+					{
+						text : 'Align Right'
+					}
+				];
+
+				align = 'right';
+			}
+
+			iu.dialog('#dialog_demo1', {
+				show : true,
+				buttons : buttons,
+				buttonsAlign : align
+			});
+		}
+	</script>
+</div>
+
+<div id="dialog_freeze_container" class="demo">
+	<div class="header"><span>Freeze And Esc</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<div>Look at the scroll bar</div>
+			<input type="button" value="Freeze" onclick="showFreezeDailog(1)" />
+			<input type="button" value="No Freeze" onclick="showFreezeDailog(0)" />
+			<input type="button" value="Try to click the key 'Esc'" onclick="showFreezeDailog(1)" >
+		</div>
+		<div id="dialog_dem2" style="display:none">
+			<div>Look at the scroll bar</div>
+			<input type="button" value="Freeze" onclick="showFreezeDailog(1)" />
+			<input type="button" value="No Freeze" onclick="showFreezeDailog(0)" />
+			<input type="button" value="Try to click the key 'Esc'" onclick="showFreezeDailog(1)" >
+		</div>
+	</div>
+	<script type="text/javascript">
+		function showFreezeDailog(freeze) {
+			if (freeze) {
+				iu.dialog('#dialog_dem2', {
+					show : false,
+					freeze : true,
+					esc : true
+				});
+			} else {
+				iu.dialog('#dialog_dem2', {
+					show : false,
+					freeze : false,
+					esc : true
+				});
+			}
+
+			iu.dialog('#dialog_dem2', 'show');
+		}
+	</script>
+</div>
+
+<div id="dialog_close_callback" class="demo">
+	<div class="header"><span>Close Callback</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<input type="button" value="Click" onclick="showCloseDialog()" /> the close button Twice to close the dialog.
+		</div>
+		<div id="demo_content3" style="display:none">
+			<input type="button" value="Click" onclick="showCloseDialog()" /> the close button Twice to close the dialog.
+		</div>
+	</div>
+	<script type="text/javascript">
+		function showCloseDialog() {
+			var couter = 0;
+
+			iu.dialog('#demo_content3', {
+				show : true,
+				close : true, // false to hide the close button
+				beforehide : function() {
+					return couter++ % 2 == 1;
+				},
+				id : 'dialog_id',
+				css : 'dialog_class'
+			});
+		}
+	</script>
+</div>
+
+<div id="dialog_custom_append_to" class="demo">
+	<div class="header"><span>Append To</span></div>
+	<div class="contents">
+		<div>
+			<input type="button" value="Append To div.demo_show" onclick="showDialogAppendTo()" />
+			<div class="demo_content" style="display:none">众所周知，在中国大陆某机构或公司若前冠“中国”二字，是非常难注册，且和政府部门有着千丝万缕的联系。所以，当“中国动态调查委员会”这个组织出现的时候，非常有唬人的功用。</div>
+			<div class="demo_show" style="background-color:#78CFF5;height:200px"></div>
+		</div>
+		<div id="demo_content4" style="display:none">众所周知，在中国大陆某机构或公司若前冠“中国”二字，是非常难注册，且和政府部门有着千丝万缕的联系。所以，当“中国动态调查委员会”这个组织出现的时候，非常有唬人的功用。</div>
+	</div>
+	<script type="text/javascript">
+		function showDialogAppendTo() {
+			// iu.dialog('#demo_content4', 'destroy');
+
+			iu.dialog('#demo_content4', {
+				title : {
+					text : '众所周知',
+					// langid : null,
+					css : 'iu_align_center'
+				},
+				show : true,
+				appendTo : '#dialog_custom_append_to div.demo_show',
+				buttons : {
+					'知道' : function() {},
+					'不知道' : function() {}
+				},
+				draggable : true
+			});
+		}
+	</script>
+</div>
+
+<div id="dialog_extend_dialog" class="demo">
+	<div class="header"><span>Extend Dialog</span></div>
+	<div class="contents">
+		<div class="demo_show">
+			<input type="button" value="Alert('You have logout')" onclick="showDialogAlert()" />
+			<input type="button" value="Confirm('Save?')" onclick="showDialogConfirm()" />
+			<input type="button" value="Prompt('Input a new name')" onclick="showDialogPrompt()" />
+		</div>
+	</div>
+	<style type="text/css">
+	.iu_dialogconfirm .iu_dialog_title{
+		color: red;
+	}
+	.iu_dialogconfirm .iu_dialog_content{
+		color: blue;
+	}
+	.iu_dialogconfirm .iu_dialog_buttons{
+		font-size: 12px;
+	}
+	</style>
+	<script type="text/javascript">
+		function showDialogAlert() {
+			iu.dialogAlert('#dialog_extend_dialog div.demo_show', '您的登录已经超时，请重新登录');
+		}
+
+		function showDialogConfirm() {
+			iu.dialogConfirm('#dialog_extend_dialog div.demo_show', {
+				title : '确认对话框',
+				text : '保存您的更改吗?',
+				positiveText : '确认保存',
+				positive : function() {
+					alert('Save Ok')
+				},
+				negativeText : '取消保存',
+				negative : function() {
+				},
+				init : function() {
+				}
+			});
+		}
+
+		function showDialogPrompt() {
+			iu.dialogPrompt('#dialog_extend_dialog div.demo_show', {
+				text : '输入分组名:',
+				value : 'Abc',
+				positive : function(val) {
+					alert(val)
+				},
+				negative : function() {}
+			});
+		}
+	</script>
+</div>
+</body>
+</html>

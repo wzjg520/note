@@ -1,0 +1,66 @@
+/* iu.tip.css */
+.iu_tip{
+	display: none;
+	position: absolute;
+	color: #282828;
+	padding: 2px;
+	min-width: 80px;
+	text-align: center;
+	font-size: 14px;
+	z-index: 20;
+}
+
+.iu_tip_inner{
+	background-color: #454545;
+	padding: 4px;
+}
+
+.iu_tip_text{
+	font-size: 12px;
+	font-weight:bold;
+	color: #fff;
+}
+
+.iu_tip_triangle{
+	position: absolute;
+}
+
+.iu_tip_triangle_top{
+	width: 19px;
+	height: 10px;
+	left: 50%;
+	margin-left: -9.5px;
+	top: -10px;
+	margin-top: 2px;
+	background-image: url(../images/tip_triangle_top.png);
+}
+
+.iu_tip_triangle_right{
+	width: 10px;
+	height: 19px;
+	left: 100%;
+	margin-left: -2px;
+	top: 50%;
+	margin-top: -9.5px;
+	background-image: url(../images/tip_triangle_right.png);
+}
+
+.iu_tip_triangle_bottom{
+	width: 19px;
+	height: 10px;
+	left: 50%;
+	margin-left: -9.5px;
+	top: 100%;
+	margin-top: -2px;
+	background-image: url(../images/tip_triangle_bottom.png);
+}
+
+.iu_tip_triangle_left{
+	width: 10px;
+	height: 19px;
+	left: -10px;
+	margin-left: 2px;
+	top: 50%;
+	margin-top: -9.5px;
+	background-image: url(../images/tip_triangle_left.png);
+}

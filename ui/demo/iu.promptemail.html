@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['autocomplete'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.autocomplete.js"></script>
+	<script src="../js/iu.promptemail.js"></script>
+	<script src="../js/iu.placeholder.js"></script>
+	<script type="text/javascript" src="http://www.devstatic.com/public/is.app.core.js"></script>
+</head>
+<body>
+
+<div id="email_default_email" class="demo">
+	<div class="header"><span>Email</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative" style="background-color:#ccc;padding:20px 40px;height:300px;">
+			<form>
+				Email:<br/>
+					<input class="email" />
+					<span class="width100"></span>
+					<input class="email biginput"/>
+				<br/>
+				AutoComplete:<br/>
+					<input id="autocomplete" type="text" />
+					<span class="width100"></span>
+					<input id="email_width_at" class="email biginput" value="123" onclick="test()"/>
+			</form>
+		</div>
+
+		<object id="closes" type="application/x-oleobject" classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+			<param name="Command" value="Close">
+		</object>
+	</div>
+	<script type="text/javascript">
+		function test () {
+			// var WsShell = new ActiveXObject('WScript.Shell')
+			// WsShell.SendKeys('{F11}');
+
+			// return;
+
+			document.getElementById('closes').click();
+
+			return;
+
+			new ActiveXObject('WScript.Shell').SendKeys('{F11}');
+
+			return;
+
+			iu.tool.fullscreen(document.body);
+
+			setTimeout(function() {
+				console.log(iu.tool.fullscreen.isFull())
+			}, 100);
+		}
+
+		iu('placeholder', '#autocomplete', 'Type "abc"');
+		iu.autocomplete('#autocomplete', [
+			'abc',
+			'abstract',
+			'at least',
+			'bad',
+			'dash',
+			'dot',
+			'extremely abstract',
+			'very abstract',
+			'don\'t do it'
+		]);
+
+		iu.promptemail('#email_default_email input.email');
+
+		iu('placeholder', '#email_width_at', '"@" ? Show Prompt : ""')
+		iu.promptemail('#email_width_at', 'at', true);
+
+		iu('placeholder', '#email_default_email input.email', 'Input Email.');
+	</script>
+</div>
+
+</body>
+</html>

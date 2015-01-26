@@ -1,0 +1,87 @@
+/* iu.menu.css */
+.iu_menu{
+	display: none;
+	position: absolute;
+	border:1px solid #aaa;
+	padding: 0;
+	margin:0;
+	box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+	font-size: 14px;
+	background-color: white;
+	z-index: 1;
+}
+
+.iu_menu_icon{
+	display: inline-block;
+	position: relative;
+	top: 3px;
+	width: 16px;
+	height: 16px;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	margin-right: 10px;
+}
+
+.iu_menu_left .iu_menu_li .iu_menu{
+	left: auto;
+	right: 100%;
+}
+
+.iu_menu li{
+	position: relative;
+	list-style: none;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+.iu_menu_li:hover{
+	background-color: #D8D8D8;
+}
+
+.iu_menu_li .iu_menu{
+	position: absolute;
+	display: none;
+	left: 100%;
+	top:0;
+}
+
+.iu_menu_li:hover>.iu_menu{
+	display: block;
+}
+
+.iu_menu_li .iu_menu .iu_menu_li{
+	white-space: nowrap;
+}
+
+.iu_menu_li a{
+	display: block;
+	padding: 10px 30px;
+	color: black;
+	text-decoration: none;
+}
+
+.iu_menu_li a[href]:hover{
+	text-decoration: underline;
+}
+
+.iu_menu_sep{
+	height: 1px;
+	background-color: #CCC;
+	margin: 4px 10px;
+}
+
+.iu_menu_icon_sub{
+	position: absolute;
+	right: 10px;
+	top: 14px;
+	width: 0;
+	height: 0;
+	border-right: none;
+	border-left: 6px solid black;
+	border-top: 4px solid transparent;
+	border-bottom: 4px solid transparent;
+}
+
+.iu_menu_li:hover>.iu_menu_icon_sub{
+	border-left: 6px solid white;
+}

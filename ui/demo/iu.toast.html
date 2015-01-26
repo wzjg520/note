@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = [];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.toast.js"></script>
+</head>
+<body>
+
+<div id="toast_toasts" class="demo">
+	<div class="header"><span>Toast</span></div>
+	<div class="contents">
+		<input type="button" value="Default Toast" onclick="showDefaultToast()" />
+		<input type="button" value="Middle Toast" onclick="showMiddleToast()" />
+		<input type="button" value="Top Toast" onclick="showTopToast()" />
+	</div>
+	<script type="text/javascript">
+	function showDefaultToast() {
+		iu.toast(document.body, 'Default Toast');
+	}
+
+	function showMiddleToast() {
+		iu.toast(document.body, {
+			text : 'Middle Toast',
+			vertical : 'middle'
+		});
+	}
+
+	function showTopToast() {
+		iu.toast(document.body, {
+			text : 'Top Toast',
+			vertical : 'top',
+			top : 20
+		});
+	}
+	</script>
+</div>
+</body>
+</html>

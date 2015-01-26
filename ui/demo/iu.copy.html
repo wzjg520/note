@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.copy.js"></script>
+	<script src="../js/iu.copy.swf.js"></script>
+
+	<script src="../js/iu.toast.js"></script>
+
+	<style type="text/css">
+	.btn_copy{
+		background-color: #0fc5a4;
+		font-size: 13px;
+		color: #fff;
+		text-align: center;
+		border-radius: 4px;
+		background-clip: padding-box;
+		display: inline-block;
+		cursor: pointer;
+		height: 22px;
+		padding: 0 10px;
+		line-height: 22px;
+	}
+	.btn_copy:hover, .btn_copy.hover{
+		background: #36d4b4;
+	}
+	</style>
+</head>
+<body>
+
+<div class="demo">
+	<div class="header"><span>Copy Text</span></div>
+	<div class="contents">
+		<div class="demo_content" style="padding: 40px; position: relative">
+			<span id="copy" class="btn_copy" title="拷贝">拷贝"iu.copy"</span>
+		</div>
+		<div id="img_list"></div>
+	</div>
+	<script type="text/javascript">
+		iu.copy('#copy', {
+			swf : '../js/iu.copy.swf',
+			text : 'iu.copy',
+			prompt : true, // default value
+			promptText : '按下 Ctrl + C 键进行拷贝',
+			copy : function() {
+				iu.toast(document.body, '拷贝成功');
+			},
+			fail : function() {
+				iu.toast(document.body, '拷贝失败');
+			}
+		});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Copy Text From Input</span></div>
+	<div class="contents">
+		<div class="demo_content" style="padding: 40px; position: relative">
+			<input id="link" value="http://www.devstatic.com" style="width:200px"/>
+			<span class="btn_copy btn_copy2">拷贝</span>
+		</div>
+		<div id="img_list"></div>
+	</div>
+	<script type="text/javascript">
+		iu.copy('.btn_copy2', {
+			swf : '../js/iu.copy.swf',
+			text : 'iu.copy',
+			target : '#link', // high priority
+			prompt : false,
+			copy : function() {
+				iu.toast(document.body, 'Copy text from input success');
+			},
+			fail : function() {
+				$('#link').focus().select();
+				iu.toast(document.body, '拷贝失败, 请按下Ctrl+C拷贝输入框字符串');
+				iu.copy('.btn_copy2', 'title', '请选中输入框内容, 再按下Ctrl+C拷贝输入框字符串');
+			}
+		});
+	</script>
+</div>
+</body>
+</html>

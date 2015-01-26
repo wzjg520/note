@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['progressbar'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.progressbar.js"></script>
+</head>
+<body>
+
+<div class="demo">
+	<div class="header"><span>Progressbar</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<div id="upload_progressbar"></div>
+			<input type="button" value="10%" onclick="updateUploadProgress(10)" />
+			<input type="button" value="50%" onclick="updateUploadProgress(50)" />
+			<input type="button" value="100%" onclick="updateUploadProgress(100)" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		iu.progressbar('#upload_progressbar', 30);
+
+		function updateUploadProgress(percent) {
+			iu.progressbar('#upload_progressbar', percent);
+		}
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>Progressing Progressbar</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<div id="active_progress"></div>
+			<input type="button" value="Pause" onclick="pauseProgress()" />
+			<input type="button" value="Start" onclick="startProgress()" />
+		</div>
+	</div>
+	<script type="text/javascript">
+		var progress = 0, timer_progress;
+
+		iu.progressbar('#active_progress', 'radius', 4);
+
+		function startProgress() {
+			timer_progress && pauseProgress();
+
+			timer_progress = setInterval(function() {
+				if (progress < 100) {
+					iu.progressbar('#active_progress', ++progress);
+				} else {
+					progress = 0;
+					pauseProgress();
+				}
+			}, 50);
+		}
+
+		function pauseProgress() {
+			timer_progress = clearInterval(timer_progress);
+		}
+
+		startProgress();
+	</script>
+</div>
+
+<style type="text/css">
+.vertical_progressbar{
+	overflow: hidden;
+}
+
+.vertical_progressbar .progressbar{
+	display: inline-block;
+	float: left;
+	width: 24px;
+	height: 82px;
+	margin-right:10px;
+}
+
+.iu_progressbar_vertical .iu_progressbar_bar{
+	background: url(images/vumeter.png) bottom no-repeat;
+}
+</style>
+<div class="demo">
+	<div class="header"><span>Progressing Progressbar</span></div>
+	<div class="contents">
+		<div class="demo_content vertical_progressbar">
+			<div class="progressbar"></div>
+			<div class="progressbar"></div>
+			<div class="progressbar"></div>
+			<div class="progressbar"></div>
+			<div class="progressbar"></div>
+			<div class="progressbar"></div>
+			<div class="progressbar"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var bars = $('div.vertical_progressbar div.progressbar');
+
+		iu.progressbar(bars, {
+			view : 'vertical',
+			label : false,
+			radius : 4,
+			value : '100'
+		});
+
+		setInterval(function() {
+			var value, i, length, before;
+
+			for (i = 0, length = bars.length; i < length; i++) {
+
+				before ? 0 : before = Math.random() * 100;
+				value = Math.round(before / 10) * 10;
+
+				value += Math.random() * 40 - 40;
+
+				iu.progressbar(bars[i], Math.round(value));
+			}
+		}, 100);
+	</script>
+</div>
+
+</body>
+</html>

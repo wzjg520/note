@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.placeholder.js"></script>
+</head>
+<body>
+<style>
+input[type=text]{
+	border:1px solid #959595;
+}
+</style>
+<div class="demo">
+	<div class="header"><span>PlaceHolder</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative" style="padding:20px;">
+			<div>placeholder</div><br/>
+			<input type="text" id="placeholder" class="demo_input"><br/><br/>
+			<input type="text" id="placeholder2" class="demo_input"><br/><br/>
+			<div style="padding:20px;background:green;">
+				<input type="text" id="placeholder3" class="demo_input" style="background:transparent;color:white">
+			</div>
+			<br/><br/>
+			<div style="padding:20px;background:green;position:relative;">
+				<label id="label_placeholder4" style="position:absolute;top:29px;left:33px;font-size:18px;color:white">placeholder dom</label>
+				<input type="text" id="placeholder4" class="demo_input" style="background:transparent;color:white">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		iu.placeholder('#placeholder', 'hello world');
+		iu.placeholder('#placeholder2', {
+			text : 'color test, left 10px',
+			color : 'red',
+			left : 10
+		});
+		iu.placeholder('#placeholder3', 'Transparent Background');
+		iu.placeholder('#placeholder4', {
+			selector : '#label_placeholder4'
+		});
+	});
+	</script>
+</div>
+
+
+</body>
+</html>

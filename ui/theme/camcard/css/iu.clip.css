@@ -1,0 +1,60 @@
+.iu_clip_box{
+    position: absolute;
+    display: none;
+
+}
+.iu_clip_border1, .iu_clip_border2,
+.iu_clip_border3, .iu_clip_border0 {
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.iu_clip_border1 {
+    background: url(../images/border-anim-v.gif) repeat-y left top;
+}
+
+.iu_clip_border2 {
+    background: url(../images/border-anim-h.gif) repeat-x left top;
+}
+
+.iu_clip_border3 {
+    background: url(../images/border-anim-v.gif) repeat-y right top;
+}
+
+.iu_clip_border0 {
+    background: url(../images/border-anim-h.gif) repeat-x left bottom;
+}
+
+.iu_clip_handle {
+    background-color: #fff;
+    border: solid 1px #000;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    left: 0;
+    top: 0;
+}
+
+.iu_clip_outer {
+    background-color: #000;
+    -ms-filter:alpha(opacity=40); 
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+    position: absolute;
+    display: none;
+    
+}
+
+.iu_clip_selection {
+    background-color: #fff;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+}

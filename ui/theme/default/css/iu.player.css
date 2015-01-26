@@ -1,0 +1,54 @@
+/* iu.player.css */
+.iu_player{
+	position:relative;
+	overflow:hidden;
+}
+
+.iu_player_inner{
+	position:relative;
+}
+
+.iu_player_btn_prev {
+	width: 40px;
+	height: 61px;
+	background-image: url(../images/player_btn_prev.png);
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	margin-top:-30px;
+	cursor: pointer;
+	display:none;
+}
+
+.iu_player_btn_next {
+	width: 40px;
+	height: 61px;
+	background-image: url(../images/player_btn_next.png);
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin-top:-30px;
+	cursor: pointer;
+	display:none;
+}
+
+.iu_player_points {
+	position:absolute;
+	bottom:0;
+	text-align:center;
+	width:100%;
+}
+
+.iu_player_point {
+	width:30px;
+	height:30px;
+	display:inline-block;
+	background-image: url(../images/player_point.png);
+	background-position:center center;
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+.iu_player_point_selected{
+	background-image: url(../images/player_point_select.png);
+}

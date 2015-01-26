@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['mselect'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.mselect.js"></script>
+
+	<script src="../js/iu.promptareacode.js"></script>
+</head>
+<body>
+<style>
+input[type=text]{
+	border:1px solid #959595;
+}
+input[type=button]{
+	
+}
+</style>
+<div class="demo">
+	<div class="header"><span>device auto</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+        	<div>自动判断浏览设备</div><br>
+            <div class="demo_input_wap"><input type="text" id="auto_areacode" class="demo_input"></div><br>
+            <input type="button" value="创建" id="create_auto_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="销毁" id="destroy_auto_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="取值" id="get_auto_areacode"><br><br>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		$('#create_auto_areacode').bind('click', function() {
+			iu.promptareacode('#auto_areacode', {
+				langid : 'zh-cn',
+				showtext : 1,
+				sltWidth : 300
+			});
+		});
+		
+		$('#destroy_auto_areacode').bind('click', function() {
+			iu.promptareacode('#auto_areacode', 'destroy');
+		});
+		
+		$('#get_auto_areacode').bind('click', function() {
+			alert(iu.promptareacode('#auto_areacode', 'val'));
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>select-option</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+        	<div>手机端</div><br>
+            <div class="demo_input_wap"><input type="text" id="select_areacode" class="demo_input"></div><br>
+            <input type="button" value="创建" id="create_select_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="销毁" id="destroy_select_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="取值" id="get_select_areacode"><br><br>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		$('#create_select_areacode').bind('click', function() {
+			iu.promptareacode('#select_areacode', {
+				mobile : true,
+				langid : 'zh-cn'
+			});
+		});
+		
+		$('#destroy_select_areacode').bind('click', function() {
+			iu.promptareacode('#select_areacode', 'destroy');
+		});
+		
+		$('#get_select_areacode').bind('click', function() {
+			alert(iu.promptareacode('#select_areacode', 'val'));
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>div-div</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+        	<div>pc端</div><br>
+            <input type="text" id="html_areacode" style="height:20px"><br><br>
+            <input type="button" value="创建" id="create_html_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="销毁" id="destroy_html_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="取值" id="get_html_areacode"><br><br>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		$('#create_html_areacode').bind('click', function() {
+			iu.promptareacode('#html_areacode', {
+				mobile : false,
+				langid : 'en-us',
+				zindex : 100
+			});
+		});
+		
+		$('#destroy_html_areacode').bind('click', function() {
+			iu.promptareacode('#html_areacode', 'destroy');
+		});
+		
+		$('#get_html_areacode').bind('click', function() {
+			alert(iu.promptareacode('#html_areacode', 'val'));
+		});
+	});
+	</script>
+</div>
+
+<div class="demo">
+	<div class="header"><span>CamCard 50M</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+        	<div>pc端camcard 50M活动页面 input样式</div><br>
+            <input type="text" id="html_areacode_50m" class="demo_input"><br><br>
+            <input type="button" value="创建" id="create_html_areacode_50m">&nbsp;&nbsp;&nbsp;<input type="button" value="销毁" id="destroy_html_areacode_50m">&nbsp;&nbsp;&nbsp;<input type="button" value="取值" id="get_html_areacode_50m">
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		$('#create_html_areacode_50m').bind('click', function() {
+			iu.promptareacode('#html_areacode_50m', {
+				mobile : false,
+				langid : 'en-us',
+				showtext : 1,
+				sltwidth : 350
+			});
+		});
+		
+		$('#destroy_html_areacode_50m').bind('click', function() {
+			iu.promptareacode('#html_areacode_50m', 'destroy');
+		});
+		
+		$('#get_html_areacode_50m').bind('click', function() {
+			alert(iu.promptareacode('#html_areacode_50m', 'val'));
+		});
+	});
+	</script>
+</div>
+
+<!--<div id="areacode" class="demo">
+	<div class="header"><span>Select AreaCode</span></div>
+	<div class="contents">
+		<div class="demo_content iu_relative">
+        	
+        	<div>自动判断手机还是电脑浏览器</div><br>
+            <div class="demo_input_wap"><input type="text" id="auto_areacode" class="demo_input"></div><br>
+            <input type="button" value="创建区域码选择框" id="create_auto_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="销毁区域码选择框" id="destroy_auto_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="获取当前选的中区域码" id="get_auto_areacode"><br><br>
+        	<div>手机端</div><br>
+            <div class="demo_input_wap"><input type="text" id="select_areacode" class="demo_input"></div><br>
+            <input type="button" value="创建区域码选择框" id="create_select_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="销毁区域码选择框" id="destroy_select_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="获取当前选的中区域码" id="get_select_areacode"><br><br>
+            <div>pc端</div><br>
+            <input type="text" id="html_areacode"><br><br>
+            <input type="button" value="创建区域码选择框" id="create_html_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="销毁区域码选择框" id="destroy_html_areacode">&nbsp;&nbsp;&nbsp;<input type="button" value="获取当前选的中区域码" id="get_html_areacode"><br><br>
+            <div>pc端camcard 50M活动页面 input样式</div><br>
+            <input type="text" id="html_areacode_50m" class="demo_input">
+            <input type="button" value="创建区域码选择框" id="create_html_areacode_50m">&nbsp;&nbsp;&nbsp;<input type="button" value="销毁区域码选择框" id="destroy_html_areacode_50m">&nbsp;&nbsp;&nbsp;<input type="button" value="获取当前选的中区域码" id="get_html_areacode_50m">
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(function() {
+		$('#create_auto_areacode').bind('click', function() {
+			iu.promptareacode('#auto_areacode', {
+				langid : 'zh-cn'
+			});
+		});
+		
+		$('#destroy_auto_areacode').bind('click', function() {
+			iu.promptareacode('#auto_areacode', 'destroy');
+		});
+		
+		$('#create_select_areacode').bind('click', function() {
+			iu.promptareacode('#select_areacode', {
+				mobile : true,
+				langid : 'zh-cn'
+			});
+		});
+		
+		$('#destroy_select_areacode').bind('click', function() {
+			iu.promptareacode('#select_areacode', 'destroy');
+		});
+		
+		$('#create_html_areacode').bind('click', function() {
+			iu.promptareacode('#html_areacode', {
+				mobile : false,
+				langid : 'en-us'
+			});
+		});
+		
+		$('#destroy_html_areacode').bind('click', function() {
+			iu.promptareacode('#html_areacode', 'destroy');
+		});
+		
+		$('#create_html_areacode_50m').bind('click', function() {
+			iu.promptareacode('#html_areacode_50m', {
+				mobile : false,
+				langid : 'en-us'
+			});
+		});
+		
+		$('#destroy_html_areacode_50m').bind('click', function() {
+			iu.promptareacode('#html_areacode_50m', 'destroy');
+		});
+		
+		$('#get_auto_areacode').bind('click', function() {
+			alert(iu.promptareacode('#auto_areacode', 'val'));
+		});
+		$('#get_select_areacode').bind('click', function() {
+			alert(iu.promptareacode('#select_areacode', 'val'));
+		});
+		$('#get_html_areacode').bind('click', function() {
+			alert(iu.promptareacode('#html_areacode', 'val'));
+		});
+		$('#get_html_areacode_50m').bind('click', function() {
+			alert(iu.promptareacode('#html_areacode_50m', 'val'));
+		});
+	});
+	</script>
+</div>-->
+
+</body>
+</html>

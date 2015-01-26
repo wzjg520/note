@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget validator</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		var css = ['validator'];
+	</script>
+	<script src="../../is.app.core.js"></script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+	<script src="../js/iu.base.js"></script>
+</head>
+<body>
+	
+<div id="tip_tips" class="demo">
+	<div class="header"><span>Validator</span></div>
+	<div class="contents">
+		<div class="demo_content">
+			<div style="padding:10px;border:4px solid #ccc;background:#fff; line-height:25px;">
+				<form action="/site/TestAjax" id="id_form_test">
+					验证数字：<input type="text" id="number" name="number"> <br>
+					验证位数：<input type="text" id="num" name="num"> <br>
+					验证邮箱：<input type="text" id="email" name="email"><br>
+					验证手机：<input type="text" id="mobile" name="mobile"><br>
+					验证URL：<input type="text" id="url" name="url"><br>
+					<button type="button" onclick="checkForm();">提交</button>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+/*
+	valid = 0 表示 ok
+	valid = 1 表示表单值错误
+	valid = 2 表示表单值为空
+ */
+ 	function checkForm(){
+
+	var ok = isappFormValidator('id_form_test',//新邮箱的合法性验证
+			[
+				{   
+					name : 'number',
+					rule : 'number',
+					fn : function(valid) {
+						if(1===valid) {
+							alert('number值错误，不是数字')
+						}else if(2===valid) {
+							alert('number为空')
+							$('#number').focus();
+						}
+					}
+				},{   
+					name : 'num',
+					rule : 'length=6,20',
+					fn : function(valid) {
+						if(1===valid) {
+							alert('num值错误')
+						}else if(2===valid) {
+							alert('num为空')
+							$('#num').focus();
+						}
+					}
+				},{   
+					name : 'email',
+					rule : 'email',
+					fn : function(valid) {
+						if(1===valid) {
+							alert('值错误')
+						}else if(2===valid) {
+							alert('email为空')
+							$('#email').focus();
+						}
+					}
+				},{   
+					name : 'mobile',
+					rule : 'mobile',
+					fn : function(valid) {
+						if(1===valid) {
+							alert('mobile值错误')
+						}else if(2===valid) {
+							alert('mobile为空')
+							$('#mobile').focus();
+						}
+					}
+				},{   
+					name : 'url',
+					rule : 'url',
+					fn : function(valid) {
+						if(1===valid) {
+							alert('url值错误')
+						}else if(2===valid) {
+							alert('url为空')
+							$('#url').focus();
+						}
+					}
+				}
+				
+				
+	]);
+	if(ok){alert("验证通过")}else{alert("验证不通过")} 
+	return false;
+}
+
+
+</script>
+</div>
+</body>
+</html>

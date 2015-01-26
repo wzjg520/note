@@ -1,0 +1,15 @@
+/* iu.scroll.css */
+.iu_scroll{
+	display: none;
+	position: absolute;
+	opacity: 0;
+	cursor: default;
+	overflow: hidden;
+}
+
+.iu_scroll_bar{
+	position: relative;
+	border-radius: 8px;
+	background-color: #ccc;
+	border: 1px solid #f0f0f0;
+}

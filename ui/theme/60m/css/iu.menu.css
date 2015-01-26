@@ -1,0 +1,152 @@
+/* iu.menu.context.css start */
+.iu_menu {
+	display:none;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	z-index: 1;	
+	font-family: lucidasans,Helvetica,"微软雅黑";
+	color: #52687e;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px #ddd;
+	width: 100px;
+}
+
+.iu_menu li {
+	position: relative;
+	list-style: none;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	text-align: left;
+	margin: 8px 0px;
+	padding: 3px 0px 3px 10px;
+	font-size: 13px;
+}
+
+.iu_menu li:hover {
+	background-color: #f1f2f7;
+}
+
+.iu_menu_li a {
+	display: block;
+	text-decoration: none;
+	color: #52687e;
+}
+
+.iu_menu_icon {
+	display: inline-block;
+	position: relative;
+	top: 3px;
+	width: 16px;
+	height: 16px;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	margin-right: 10px;	
+}
+
+.iu_menu_icon_account_set {
+	background-image:url(../theme/camscanner/images/menu_icon_setting.png);
+}
+
+.iu_menu_icon_edit {
+	background-image:url(../theme/camscanner/images/menu_icon_edit.png);
+}
+
+.iu_menu_icon_delete {
+	background-image:url(../theme/camscanner/images/menu_icon_delete.png);
+}
+
+.iu_menu_icon_logout {
+	background-image:url(../theme/camscanner/images/menu_icon_logout.png);
+}
+
+.iu_contextmenu{
+	display: none;
+	position: absolute;
+	border:1px solid #aaa;
+	padding: 0;
+	margin:0;
+	box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+	font-size: 14px;
+	background-color: white;
+	z-index: 1;
+}
+
+.iu_contextmenu_icon{
+	display: inline-block;
+	position: relative;
+	top: 3px;
+	width: 16px;
+	height: 16px;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	margin-right: 10px;
+}
+
+.iu_contextmenu_left .iu_contextmenu_li .iu_contextmenu{
+	left: auto;
+	right: 100%;
+}
+
+.iu_contextmenu li{
+	position: relative;
+	list-style: none;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+.iu_contextmenu_li:hover{
+	background-color: #D8D8D8;
+}
+
+.iu_contextmenu_li .iu_contextmenu{
+	position: absolute;
+	display: none;
+	left: 100%;
+	top:0;
+}
+
+.iu_contextmenu_li:hover>.iu_contextmenu{
+	display: block;
+}
+
+.iu_contextmenu_li .iu_contextmenu .iu_contextmenu_li{
+	white-space: nowrap;
+}
+
+.iu_contextmenu_li a{
+	display: block;
+	padding: 10px 30px;
+}
+
+.iu_contextmenu_sep{
+	height: 1px;
+	background-color: #CCC;
+	margin: 4px 10px;
+}
+
+.iu_contextmenu_icon_sub{
+	position: absolute;
+	right: 10px;
+	top: 14px;
+	width: 0;
+	height: 0;
+	border-right: none;
+	border-left: 6px solid black;
+	border-top: 4px solid transparent;
+	border-bottom: 4px solid transparent;
+}
+
+.iu_contextmenu_li:hover>.iu_contextmenu_icon_sub{
+	border-left: 6px solid white;
+}
+/* iu.menu.context.css end */
+
+/* iu.menu.list.css start */
+/* iu.menu.list.css end */
+
+/* iu.menu.popup.css start */
+/* iu.menu.popup.css end */

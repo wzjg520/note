@@ -1,0 +1,45 @@
+/* iu.progressbar.css */
+.iu_progressbar{
+	position: relative;
+	height: 20px;
+	border:1px solid #ccc;
+	background-color: white;
+	padding: 1px;
+}
+
+.iu_progressbar_bar{
+	position: relative;
+	height: 100%;
+	background-color: #ccc;
+}
+
+.iu_progressbar_label{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	top: 3px;
+	font-size: 14px;
+}
+
+.iu_progressbar_vertical{
+	height: 100%;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.iu_progressbar_vertical .iu_progressbar_bar{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 0;
+	width: 100%;
+}
+
+.iu_progressbar_vertical .iu_progressbar_label{
+	top: 50%;
+	margin-top: -7px;
+	-webkit-transform:rotate(270deg);
+	-moz-transform:rotate(270deg);
+	-o-transform:rotate(270deg);
+	transform:rotate(270deg);
+}
