@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $items = array(
     1 => array('id' => 1, 'pid' => 0, 'name' => '江西省'),
     2 => array('id' => 2, 'pid' => 0, 'name' => '黑龙江省'),
