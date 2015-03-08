@@ -1,2 +1,0 @@
-ajax 异步解决方案
-http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html
