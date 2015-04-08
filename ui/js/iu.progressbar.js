@@ -50,7 +50,7 @@ iu.widget('progressbar', {
 		self.label = progressbar.children('div.iu_progressbar_label');
 
 		iu.tool.css(progressbar, options, 'width,height');
-		options.radius == null || (progressbar.css('border-radius', options.radius), self.bar.css('border-radius', options.radius));
+		options.radius == null || (progressbar.css('border-radius', options.radius), self.bar.css('border-radius', options.border_radius || options.radius));
 		options.shadow == null || progressbar.css('box-shadow', options.shadow);
 		options.label == true && self.label.removeClass('iu_none');
 		options.view == 'vertical' && progressbar.addClass('iu_progressbar_vertical');
@@ -66,6 +66,7 @@ iu.widget('progressbar', {
 		}*/
 		width : null,
 		height: null,
-		radius : null
+		radius : null,
+		border_radius: null
 	}
 });

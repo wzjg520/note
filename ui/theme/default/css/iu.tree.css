@@ -1,0 +1,94 @@
+.iu_tree .icon{
+	display: inline-block;
+	width:20px;
+	height:20px;
+}
+.iu_tree .line,.iu_tree .switch{
+	display: inline-block;
+	width:20px;
+	height:20px;
+}
+.iu_tree.no_icon .icon{
+	display: none;
+}
+.iu_tree ul{
+	margin-left: 4px;
+	padding-left: 20px;
+}
+.iu_tree ul.level2{
+	background: url(../images/tree_dashline_3.png) 0 0 repeat-y;
+}
+.iu_tree li a{
+	display: block;
+	vertical-align: top;
+	height: 20px;
+}
+.iu_tree a span{
+	line-height: 20px;
+	vertical-align: top;
+}
+.iu_tree ul li{
+	margin: 10px 0px;
+}
+.iu_tree li:hover{
+	cursor: pointer;
+}
+
+.iu_tree .three_line{
+	background: url(../images/tree_dashline_2.png) no-repeat;
+	background-position: 4px 0px;
+}
+.iu_tree .three_line_check{
+	background: url(../images/three_expand.png) no-repeat;
+}
+.iu_tree .three_line_check:hover{
+	background: url(../images/three_expand_hover.png) no-repeat;
+}
+.iu_tree .open .three_line_check{
+	background: url(../images/three_collapse.png) no-repeat;
+}
+.iu_tree .open .three_line_check:hover{
+	background: url(../images/three_collapse_hover.png) no-repeat;
+}
+
+.iu_tree .two_line{
+	background: url(../images/tree_dashline_1.png) no-repeat;
+	background-position: 4px 0px;
+}
+.iu_tree .two_line_check{
+	background: url(../images/two_expand.png) no-repeat;
+}
+.iu_tree .two_line_check:hover{
+	background: url(../images/two_expand_hover.png) no-repeat;
+}
+.iu_tree .open .two_line_check{
+	background: url(../images/two_collapse.png) no-repeat;
+}
+.iu_tree .open .two_line_check:hover{
+	background: url(../images/two_collapse_hover.png) no-repeat;
+}
+
+
+.iu_tree .one_line{
+	background: url(../images/tree_dashline_6.png) no-repeat;
+	background-position: 0px 6px;
+}
+.iu_tree .one_line_check{
+	background: url(../images/one_expand.png) no-repeat;
+	background-position: 0px 6px;
+}
+.iu_tree .one_line_check:hover{
+	background: url(../images/one_expand_hover.png) no-repeat;
+	background-position: 0px 6px;
+}
+.iu_tree .open .one_line_check{
+	background: url(../images/one_collapse.png) no-repeat;
+	background-position: 0px 6px;
+}
+.iu_tree .open .one_line_check:hover{
+	background: url(../images/one_collapse_hover.png) no-repeat;
+	background-position: 0px 6px;
+}
+
+
+

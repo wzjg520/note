@@ -400,7 +400,7 @@
 		doc = document,
 		win = window;
 
-	var $ = win.jQuery || window.Zepto;
+	var $ = win.jQuery || win.Zepto;
 
 	function noop() {}
 
@@ -957,6 +957,7 @@
 		return -1;
 	}
 
+	tool.toArray = makeArray;
 	/**
 	 * return scroll bar width
 	 * */

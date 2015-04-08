@@ -7,11 +7,12 @@ $uploader = new CLibUploader();
 
 $filename = time() . '-' . $uploader->getName();
 $filepath = dirname(__FILE__) . '/tmp/' . $filename;
+$url = $_GET['url'];
 
 $uploader->save($filepath);
 
 echo json_encode(array(
 	'errno' => 0,
 	'msg' => '',
-	'data' => 'http://www.devstatic.com/public/ui/demo/tmp/' . $filename,
+	'data' => $url . '/tmp/' . $filename,
 ));

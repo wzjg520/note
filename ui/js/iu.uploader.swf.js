@@ -346,7 +346,11 @@ SWFUpload.prototype.destroy = function () {
 		delete this.eventQueue;
 		delete this.movieName;
 		
-		delete window[this.movieName];
+		try {
+			delete window[this.movieName];
+		} catch(e) {
+			window[this.movieName] = null;
+		}
 		
 		return true;
 	} catch (ex1) {

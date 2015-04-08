@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>iu Widget</title>
+
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script type="text/javascript">
+		// css required defined here
+		var css = ['tree'];
+	</script>
+
+	<script src="js/third.js"></script>
+	<script src="js/demo.js"></script>
+
+	<script src="../js/iu.base.js"></script>
+	<script src="../js/iu.tree.js"></script>
+</head>
+<body>
+
+<div id="" class="demo">
+	<div class="header"><span>tree</span></div>
+	<div class="contents">
+		<ul id='treedemo'></ul>
+	</div>
+	<script type="text/javascript">
+		var data =[
+			{ id:14, pId:0, name:"root", open:true, icon:"folder"},
+			{ id:1, pId:14, name:"文件夹1", open:true, icon:"folder"},
+			{ id:11, pId:1, name:"图片1", icon:"image"},
+			{ id:12, pId:1, name:"文件1", icon:"txt"},
+			{ id:13, pId:1, name:"视频1", icon:"video"},
+			{ id:2, pId:14, name:"文件夹2", open:true, icon:"folder"},
+			{ id:21, pId:2, name:"图片2", icon:"image"},
+			{ id:22, pId:2, name:"文件3", icon:"txt"},
+			{ id:23, pId:2, name:"文件夹3", icon:"folder"},
+			{ id:3, pId:23, name:"文件夹4" ,icon:"mp3"},
+			{ id:233, pId:14, name:"文件夹2", open:true, icon:"folder"},
+		];
+		iu.tree('#treedemo',{
+			data:data,
+			edit:true
+		});
+	</script>
+</div>
+</body>
+</html>

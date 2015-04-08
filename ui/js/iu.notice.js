@@ -89,6 +89,10 @@ iu.widget('notice', {
 							+ '<span class="iu_notice_text' + text.css + '"' + text.langid + '>' + text.text + '</span>'
 							+ '<a class="iu_notice_close"></a>'
 					+ '</div>');
+					
+		if(options.this_id) {
+			notice.attr('id', options.this_id);
+		}
 
 		self.notice = notice;
 
@@ -155,6 +159,7 @@ iu.widget('notice', {
 		text : null,
 		level : 1, // level = 0 means server message, notice won't hide until user click the close button
 		langid : null,
+		this_id : null,/* 请不要删除，区分各自样式 */
 		css : null,
 		animate : 'slide', // none|fade|slide
 		autoHide : 5000, // used when level != 0
