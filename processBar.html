@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#canvas:{
+		display:block;
+		margin:100px auto;
+		background:#ccc;
+	}
+	@font-face{ 
+		font-family:"abc";
+		src:url("BebasNeue.otf");
+	}
+</style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="300"/>
+<script>
+	
+	var progressBar = function(element){
+		var canvas = element,
+			ctx = canvas.getContext("2d"),
+			w = canvas.width,
+			h = canvas.height,
+			deg = 0,
+			new_deg = 0,
+			dif = 0,
+			loop,re_loop,text,text_w,reloop_timer;
+			
+			var init = function(){
+				ctx.clearRect(0,0,w,h);
+				ctx.beginPath();
+				ctx.strokeStyle = "yellow";
+				ctx.arc(w/2, h/2, 100, 0, Math.PI*2,false);
+				ctx.stroke();
+				
+				var r= deg*Math.PI/180;
+				ctx.beginPath();
+				var my_gradient = ctx.createLinearGradient(0, 0, 400, 200);
+				my_gradient.addColorStop(0.3, "green");
+				my_gradient.addColorStop(1, "red");
+				ctx.strokeStyle = my_gradient;
+				ctx.lineWidth = 20;
+				ctx.arc(w/2,h/2,100,0-120*Math.PI/180,r-90*Math.PI/180,false);
+				ctx.stroke();
+				
+				ctx.fillStyle= "#666";
+				ctx.font="50px arial";
+				text = Math.floor(deg/360*100)+"%";
+				text_w = ctx.measureText(text).width;
+				ctx.fillText(text,w/2 - text_w/2,h/2+15);
+			}
+			
+			var draw = function(){
+				var tmp_deg = new_deg || 360;
+				new_deg += Math.round(Math.random()*(360-new_deg));
+				dif = new_deg-deg;				
+				loop = setInterval(to,3000/dif);
+			}
+			
+			var to = function(){
+				if(text == '100%'){
+					clearInterval(loop);
+					return;
+				}
+				if(deg == new_deg){
+					clearInterval(loop);
+					draw();
+					console.log('loop')
+				}
+				
+				
+				if(deg<new_deg){
+					deg++;
+				}else{
+					deg--;
+				}
+				console.log(1);
+				init();
+			}
+			
+			re_loop = function(){
+				//reloop_timer = setInterval(draw,1000);
+			}
+						
+			return {
+				draw : draw,
+				reLoop : re_loop
+			}
+	}
+	
+	window.onload = function(){
+		var progress = new progressBar(document.getElementById("canvas"));
+		progress.draw();
+		//progress.reLoop();
+		
+		
+		//progressBar.draw();
+		
+		
+		
+//		var canvas = document.getElementById("canvas");
+//		var ctx = canvas.getContext("2d");
+//		var W = canvas.width;
+//		var H = canvas.height;
+//		var deg=0,new_deg=0,dif=0;
+//		var loop,re_loop;
+//		var text,text_w;
+//		
+//		function init(){
+//			ctx.clearRect(0,0,W,H);
+//			ctx.beginPath();
+//			ctx.strokeStyle="#333";
+//			ctx.lineWidth=30;
+//			ctx.arc(W/2,H/2,100,0,Math.PI*2,false);
+//			ctx.stroke();
+//			
+//			var r = deg*Math.PI/180;
+//			ctx.beginPath();
+//			var my_gradient = ctx.createLinearGradient(0,0,400,200);
+//			my_gradient.addColorStop(0.2,"rgba(33,61,69,9)");
+//			my_gradient.addColorStop(1,"#31fbfb");
+//			ctx.strokeStyle = my_gradient;
+//			ctx.lineWidth=30;
+//			ctx.arc(W/2,H/2,100,0-120*Math.PI/180,r-90*Math.PI/180,false);
+//			ctx.stroke();
+//			
+//			ctx.fillStyle= "#123";
+//			ctx.font="50px abc";
+//			text = Math.floor(deg/360*100)+"%";
+//			text_w = ctx.measureText(text).width;
+//			ctx.fillText(text,W/2 - text_w/2,H/2+15);
+//		}
+//		function draw(){
+//			new_deg = Math.round(Math.random()*360);
+//			dif = new_deg-deg;
+//			loop = setInterval(to,1000/dif);
+//		}
+//		function to(){
+//			if(deg == new_deg){
+//				clearInterval(loop);
+//			}
+//			if(deg<new_deg){
+//				deg++;
+//			}else{
+//				deg--;
+//			}
+//			init();
+//		}
+//		draw();
+//		re_loop = setInterval(draw,2000);
+	}
+</script>	
+	
+</body>
+</html>
