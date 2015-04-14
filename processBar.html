@@ -1,184 +1,136 @@
-function showStatus(){
-	isappAjax({
-		url: '/async/status'
-	}, function(data) {
-		if (data.total < 1) {
-			return;
-		}
-		iu.template.setEscape(false);
-		var html = iu.template($("#template_status").html(),
-							   {
-								list:data.list.reverse(),
-								num: data.unfinished,
-								total: data.total,
-								error: data.error
-							   });
-		$('#astatus_panel').html(html);
-		
-		//环形loading目前用于测试
-		setTimeout(function(){
-			var progress = new progressBar($('.loading_status')[0]);
-			progress.setOpt({
-				startColor:'green',
-				endColor:'red',
-				font:'12 arial',
-				lineWidth:3.5,
-				radius:17,
-				totalTime:1000
-			});
-			progress.draw(function(e){
-				$(e).siblings('.astatus_line2').html('已全部完成')
-			});
-		},500)
-		
-		
-		$('#astatus_panel .close_status').click(function(){
-			var row = $(this).parents('.astatus_row');
-			var id = row.attr('tid');
-			isappAjax({
-				url: '/async/hidestatus',
-				data: {
-					key: id
-				}
-			}, function(data) {
-				$('#total_task').text($('#total_task').text()-1);
-				row.remove();
-			}, function(err, msg) {
-			});
-		});
-		$('#hide_status').click(function(){
-			if ($(this).html() == '-') {
-				$('.astatus_panel').addClass('mini_status');
-				$(this).html('+');
-			} else {
-				$('.astatus_panel').removeClass('mini_status');
-				$(this).html('-');
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#canvas:{
+		display:block;
+		margin:100px auto;
+		background:#ccc;
+	}
+	@font-face{ 
+		font-family:"abc";
+		src:url("BebasNeue.otf");
+	}
+</style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"/>
+<script>
+	
+	var progressBar = function(element){
+		var canvas = element,
+			ctx = canvas.getContext("2d"),
+			w = canvas.width,
+			h = canvas.height,
+			deg = 0,
+			new_deg = 0,
+			dif = 0,
+			totalTime = 3000,
+			startColor = 'green',
+			endColor = 'red',
+			strokeColor = 'yellow',
+			fillColor = "#666",
+			font = "50px arial",
+			lineWidth = 5,
+			radius = (w+h-2*lineWidth)/4,
+			closeCallback,
+			fontoffset = 5,
+			loop,text,text_w,close;
+			var init = function(){
+				ctx.clearRect(0,0,w,h);
+				ctx.beginPath();
+				ctx.strokeStyle = strokeColor;
+				ctx.arc(w/2, h/2, radius, 0, Math.PI*2,false);
+				ctx.stroke();
+				
+				var r= deg*Math.PI/180;
+				ctx.beginPath();
+				var my_gradient = ctx.createLinearGradient(0, 0, w, h);
+				my_gradient.addColorStop(0.5, startColor);
+				my_gradient.addColorStop(1, endColor);
+				ctx.strokeStyle = my_gradient;
+				ctx.lineWidth = lineWidth;
+				ctx.arc(w/2,h/2,radius,0-97*Math.PI/180,r-90*Math.PI/180,false);
+				ctx.stroke();
+				
+				ctx.fillStyle = fillColor;
+				ctx.font = font;
+
+				text = Math.ceil(deg/360*100)+"%";
+				text_w = ctx.measureText(text).width;
+				console.log(ctx.measureText(text))
+				ctx.fillText(text,w/2 - text_w/2,h/2+fontOffset);
 			}
-		});
-		$('.astatus_row .show_error').click(function(){
-			var row = $(this).parents('.astatus_row');
-			var id = row.attr('tid');
-			isappAjax({
-				url: '/async/errors',
-				data: {
-					key: id
+			
+			var draw = function(callback){
+				new_deg += Math.round(Math.random()*(360-new_deg));
+				dif = new_deg-deg;				
+				loop = setInterval(to,totalTime/dif);
+				//执行成功后回调
+				callback && (closeCallback = callback);
+			}
+			
+			var to = function(){
+				if(text == '100%'){
+					clearInterval(loop);
+					closeCallback && closeCallback(canvas);
+					return;
 				}
-			}, function(data) {
-				iu.dialog('#dialog_status_error', {
-					close: true,
-					once : true,
-					clone : true,
-					persist: true,
-					width: 930,
-					buttonsAlign: 'right',
-					aftershow: function(){
-						$('.iu_dialog .error_tr_box').html('<div class="error_tr ib"><div class="w_cause error_cause">用户已加入</div><div class="w_detail error_detail">1,2,3,4,5,6</div></div>');
-					}
-				});
-			}, function(err, msg) {
-			});
+				if(deg == new_deg){
+					clearInterval(loop);
+					draw();
+				}				
+				
+				if(deg<new_deg){
+					deg++;
+				}else{
+					deg--;
+				}
+				init();
+			}
+			
+			setOpt = function(obj){
+				w = obj.width || w,	//x
+				h = obj.height || h,	//y
+				deg = obj.deg || deg,	//默认加载的loading角度
+				fillColor = obj.fillColor || fillColor,	//loading内文字颜色
+				font = obj.font || font,	//文字大小及字体
+				strokeColor = obj.strokeColor || strokeColor, //loading边框颜色
+				startColor = obj.startColor || startColor, //渐变颜色1
+				endColor = obj.endColor || endColor,	//渐变颜色2				
+				totalTime = obj.totalTime || totalTime;	//加载缓冲时间，不精确
+				lineWidth = obj.lineWidth || lineWidth;	//loading边框宽度
+				radius = obj.radius || radius //loading半径
+				fontOffset = obj.fontOffset || fontoffset
+			}
+			
+			close = function(callback){
+				deg = 360;
+				callback && callback();
+			}
+			return {
+				draw : draw,
+				setOpt : setOpt,
+				close : close
+			}
+	}
+	
+	window.onload = function(){
+		var progress = new progressBar(document.getElementById("canvas"));
+		progress.setOpt({
+			startColor:'green',
+			endColor:'red',
+			font:'150px arial',
+			lineWidth:20,
+			radius:200,
+			fontOffset:50,
+			totalTime:100
 		});
-	}, function(err, msg) {
-	});
-}
-
-//环形进度条
-var progressBar = function(element){
-	var canvas = element,
-		ctx = canvas.getContext("2d"),
-		w = canvas.width,
-		h = canvas.height,
-		deg = 0,
-		new_deg = 0,
-		dif = 0,
-		totalTime = 3000,
-		startColor = 'green',
-		endColor = 'red',
-		strokeColor = 'yellow',
-		fillColor = "#666",
-		font = "50px arial",
-		lineWidth = 5,
-		closeCallback,
-		radius = (w+h-2*lineWidth)/4,
-		loop,text,text_w,close;
-	var init = function(){
-		ctx.clearRect(0,0,w,h);
-		ctx.beginPath();
-		ctx.strokeStyle = strokeColor;
-		ctx.arc(w/2, h/2, radius, 0, Math.PI*2,false);
-		ctx.stroke();
-		
-		var r= deg*Math.PI/180;
-		ctx.beginPath();
-		var my_gradient = ctx.createLinearGradient(0, 0, w, h);
-		my_gradient.addColorStop(0.5, startColor);
-		my_gradient.addColorStop(1, endColor);
-		ctx.strokeStyle = my_gradient;
-		ctx.lineWidth = lineWidth;
-		ctx.arc(w/2,h/2,radius,0-97*Math.PI/180,r-90*Math.PI/180,false);
-		ctx.stroke();
-		
-		ctx.fillStyle = fillColor;
-		ctx.font = font;
-
-		text = Math.ceil(deg/360*100)+"%";
-		text_w = ctx.measureText(text).width;
-		ctx.fillText(text,w/2 - text_w/2,h/2+5);
+		progress.draw();
 	}
+</script>	
 	
-	var draw = function(callback){
-		new_deg += Math.round(Math.random()*(360-new_deg));
-		dif = new_deg-deg;				
-		loop = setInterval(to,totalTime/dif);
-		//执行成功后回调
-		callback && (closeCallback = callback);
-	}
-	
-	var to = function(){
-		if(text == '100%'){
-			clearInterval(loop);
-			closeCallback && closeCallback(canvas);
-			return;
-		}
-		if(deg == new_deg){
-			clearInterval(loop);
-			draw();
-		}				
-		
-		if(deg<new_deg){
-			deg++;
-		}else{
-			deg--;
-		}
-		init();
-	}
-	
-	setOpt = function(obj){
-		w = obj.width || w,	//x
-		h = obj.height || h,	//y
-		deg = obj.deg || deg,	//默认加载的loading角度
-		fillColor = obj.fillColor || fillColor,	//loading内文字颜色
-		font = obj.font || font,	//文字大小及字体
-		strokeColor = obj.strokeColor || strokeColor, //loading边框颜色
-		startColor = obj.startColor || startColor, //渐变颜色1
-		endColor = obj.endColor || endColor,	//渐变颜色2				
-		totalTime = obj.totalTime || totalTime;	//加载缓冲时间，不精确
-		lineWidth = obj.lineWidth || lineWidth;	//loading边框宽度
-		radius = obj.radius || radius //loading半径
-	}
-	
-	close = function(callback){
-		deg = 360;
-		callback();
-	}
-	return {
-		draw : draw,
-		setOpt : setOpt,
-		close : close
-	}
-}
-
-$(function(){
-	showStatus();
-	setInterval(showStatus, 90000);	
-});
+</body>
+</html>
