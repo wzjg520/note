@@ -36,7 +36,7 @@
 			lineWidth = 5,
 			radius = (w+h-2*lineWidth)/4,
 			closeCallback,
-			fontoffset = 5,
+			fontOffset = 5,
 			loop,text,text_w,close;
 			var init = function(){
 				ctx.clearRect(0,0,w,h);
@@ -103,7 +103,7 @@
 				totalTime = obj.totalTime || totalTime;	//加载缓冲时间，不精确
 				lineWidth = obj.lineWidth || lineWidth;	//loading边框宽度
 				radius = obj.radius || radius //loading半径
-				fontOffset = obj.fontOffset || fontoffset
+				fontOffset = obj.fontOffset || fontOffset
 			}
 			
 			close = function(callback){
