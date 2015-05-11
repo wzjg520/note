@@ -4,131 +4,161 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#canvas:{
-		display:block;
-		margin:100px auto;
-		background:#ccc;
-	}
-	@font-face{ 
-		font-family:"abc";
-		src:url("BebasNeue.otf");
-	}
 </style>
 </head>
 <body>
-<canvas id="canvas" width="500" height="500"/>
-<script>
-	
+<script>	
 	var progressBar = function(element){
-		var canvas = element,
-			ctx = canvas.getContext("2d"),
-			w = canvas.width,
-			h = canvas.height,
-			deg = 0,
-			new_deg = 0,
-			dif = 0,
-			totalTime = 3000,
-			startColor = 'green',
-			endColor = 'red',
-			strokeColor = 'yellow',
-			fillColor = "#666",
-			font = "50px arial",
-			lineWidth = 5,
-			radius = (w+h-2*lineWidth)/4,
-			closeCallback,
-			fontOffset = 5,
-			loop,text,text_w,close;
-			var init = function(){
-				ctx.clearRect(0,0,w,h);
-				ctx.beginPath();
-				ctx.strokeStyle = strokeColor;
-				ctx.arc(w/2, h/2, radius, 0, Math.PI*2,false);
-				ctx.stroke();
-				
-				var r= deg*Math.PI/180;
-				ctx.beginPath();
-				var my_gradient = ctx.createLinearGradient(0, 0, w, h);
-				my_gradient.addColorStop(0.5, startColor);
-				my_gradient.addColorStop(1, endColor);
-				ctx.strokeStyle = my_gradient;
-				ctx.lineWidth = lineWidth;
-				ctx.arc(w/2,h/2,radius,0-97*Math.PI/180,r-90*Math.PI/180,false);
-				ctx.stroke();
-				
-				ctx.fillStyle = fillColor;
-				ctx.font = font;
+		var canvas,
+			configMap = {
+				width : 200,
+				height : 200,
+				deg : 0,
+				new_deg : 0,
+				dif : 0,
+				total_time : 3000,
+				start_color : 'green',
+				end_color : 'red',
+				stroke_color : 'yellow',
+				fill_color : 'red',
+				font : '20px arial',
+				line_width : 5,
+				radius : (this.width + this.height - 2 * this.line_width)/4,
+				font_offset : 5
+			
 
-				text = Math.ceil(deg/360*100)+"%";
-				text_w = ctx.measureText(text).width;
-				console.log(ctx.measureText(text))
-				ctx.fillText(text,w/2 - text_w/2,h/2+fontOffset);
-			}
+			},
+			ctx,
+			closecallback,
+			from,
+			requestAnimationFrame = window.requestAnimationFrame || 
+								window.mozRequestAnimationFrame || 
+								window.webkitRequestAnimationFrame || 
+								window.msRequestAnimationFrame || 
+								window.oRequestAnimationFrame || 
+								function(callback) { setTimeout(callback, 1000 / 60); },
+
+			loop,text,text_w,close,createElement,loading;
+
+		
+		createElement = function(){
+			canvas = document.createElement('canvas');
+			canvas.width = configMap.width;
+			canvas.height = configMap.height;
+			ctx = canvas.getContext("2d");
+			document.body.appendChild(canvas);			
 			
-			var draw = function(callback){
-				new_deg += Math.round(Math.random()*(360-new_deg));
-				dif = new_deg-deg;				
-				loop = setInterval(to,totalTime/dif);
-				//执行成功后回调
+		}
+
+		draw = function(){
+			ctx.clearRect(0, 0, configMap.width, configMap.height);
+			ctx.beginPath();
+			ctx.strokeStyle = configMap.stroke_color;
+			ctx.arc(configMap.width/2, configMap.height/2, configMap.radius, 0, Math.PI*2,false);
+			ctx.stroke();
+			
+			var r= configMap.deg * Math.PI/180;
+			ctx.beginPath();
+
+			//loading中间的渐变线效果
+			var my_gradient = ctx.createLinearGradient(0, 0, configMap.width, configMap.height);
+			my_gradient.addColorStop(0.5, configMap.start_color);
+			my_gradient.addColorStop(1, configMap.end_color);
+			
+			ctx.strokeStyle = my_gradient;
+			ctx.lineWidth = configMap.line_width;
+			ctx.arc(configMap.width/2, configMap.height/2, configMap.radius, 0 - 97 * Math.PI/180, r - 90 * Math.PI/180,false);
+			ctx.stroke();
+			
+			ctx.fillStyle = configMap.fill_color;
+			ctx.font = configMap.font;
+
+			step = Math.ceil(configMap.deg/360 * 100);
+			
+			text_w = ctx.measureText(step).width;
+			
+			ctx.fillText(step, configMap.width/2 - text_w/2, configMap.height/2+configMap.font_offset);
+		}
+
+			
+		loading = function(){
+			configMap.new_deg += Math.round(Math.random()*(360-configMap.new_deg));
+			configMap.dif = configMap.new_deg-configMap.deg;			
+			draw();
+			console.log(step);
+			if(step  <= 100){
+				to();
+				requestAnimationFrame(loading);
+			}else{
 				callback && (closeCallback = callback);
-			}
+			}				
 			
-			var to = function(){
-				if(text == '100%'){
-					clearInterval(loop);
-					closeCallback && closeCallback(canvas);
-					return;
-				}
-				if(deg == new_deg){
-					clearInterval(loop);
-					draw();
-				}				
-				
-				if(deg<new_deg){
-					deg++;
-				}else{
-					deg--;
-				}
-				init();
-			}
+		}
 			
-			setOpt = function(obj){
-				w = obj.width || w,	//x
-				h = obj.height || h,	//y
-				deg = obj.deg || deg,	//默认加载的loading角度
-				fillColor = obj.fillColor || fillColor,	//loading内文字颜色
-				font = obj.font || font,	//文字大小及字体
-				strokeColor = obj.strokeColor || strokeColor, //loading边框颜色
-				startColor = obj.startColor || startColor, //渐变颜色1
-				endColor = obj.endColor || endColor,	//渐变颜色2				
-				totalTime = obj.totalTime || totalTime;	//加载缓冲时间，不精确
-				lineWidth = obj.lineWidth || lineWidth;	//loading边框宽度
-				radius = obj.radius || radius //loading半径
-				fontOffset = obj.fontOffset || fontOffset
+		to = function(){
+			if(step == 100){
+				closeCallback && closeCallback(canvas);
+				return;
 			}
+			if(configMap.deg == configMap.new_deg){
+				draw();
+			}				
 			
-			close = function(callback){
-				deg = 360;
-				callback && callback();
+			if(configMap.deg < configMap.new_deg){
+				configMap.deg++;
+			}else{
+				configMap.deg--;
 			}
-			return {
-				draw : draw,
-				setOpt : setOpt,
-				close : close
-			}
+		}
+			
+		setOpt = function(obj){
+			configMap.width = obj.width || configMap.width,	//x
+			configMap.height = obj.height || configMap.height,	//y
+			configMap.deg = obj.deg || configMap.deg,	//默认加载的loading角度
+			configMap.fill_color = obj.fillColor || configMap.fill_color,	//loading内文字颜色
+			configMap.font = obj.font || configMap.font,	//文字大小及字体
+			configMap.stroke_color = obj.strokeColor || configMap.stroke_color, //loading边框颜色
+			configMap.start_color = obj.startColor || configMap.start_color, //渐变颜色1
+			configMap.end_color = obj.endColor || configMap.end_color,	//渐变颜色2				
+			configMap.total_time = obj.totalTime || configMap.total_time;	//加载缓冲时间，不精确
+			configMap.line_width = obj.lineWidth || configMap.line_width;	//loading边框宽度
+			configMap.radius = obj.radius || configMap.radius //loading半径
+			configMap.font_offset = obj.fontOffset || configMap.font_offset
+		}
+			
+		close = function(callback){
+			configMap.deg = 360;
+			callback && callback();
+		}
+
+		init = function(){
+			//创建canvas标签
+			createElement();
+			loading();			
+		}
+
+		return {
+			draw : draw,
+			setOpt : setOpt,
+			close : close,
+			init : init
+		}
 	}
-	
+
 	window.onload = function(){
-		var progress = new progressBar(document.getElementById("canvas"));
+		var progress = new progressBar;
 		progress.setOpt({
 			startColor:'green',
 			endColor:'red',
-			font:'150px arial',
+			font:'20px arial',
 			lineWidth:20,
-			radius:200,
-			fontOffset:50,
-			totalTime:100
+			radius:100,
+			fontOffset:0,
+			totalTime:100,
+			width : 300,
+			height : 300
 		});
-		progress.draw();
+		progress.init();
 	}
 </script>	
 	
