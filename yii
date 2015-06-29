@@ -1,0 +1,58 @@
+安装yii可谓一波三折啊
+
+首先可恶的composer在天朝使劲的无法安装yii成功，我就想了个折中的办法，在我的服务器上安装，然后通过github建立起代源，我再同步回来。
+
+思路是可以的出现点问题，本人服务器git是1.7.1的版本 死活提交不上去啊，这不是坑死我了吗，好吧升级git。
+
+git版本检测
+
+CentOS下使用git --version 检测git的版本
+
+# git --version
+git version 1.7.1
+
+系统检测
+uanme -a 好吧centos6.5 x86-64
+
+
+升级
+
+1.导入证书
+
+# rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+2.安装RPMForge源
+
+在这里查找对应的版本,比如我这里根据系统版本选择了rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm,右键拷贝地址, 粘贴到命令rpm -i命令后面执行
+
+# rpm -i http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+
+package rpmforge-release-0.5.3-1.el6.rf.x86_64 is already installed
+符合系统版本的文件可能有多个,选一个较新的即可.
+3.更新rpmforge-extra源
+
+# yum --enablerepo=rpmforge-extras update
+途中会有选项Is this ok [y/N]:询问是否下载, 如果选了y会更新所有的软件到匹配的最新版本,包括git,如果选N也可以手动安装git到最新版
+
+这里建议选择N,选y需要较长时间(我当前网速下测试为一小时左右),一些软件升级后可能需要重新配置才能起作用, 比如MySQL从5.1升级到了5.5, 由于未配置直接导致我在线的两个项目无法运行, 只能手忙脚乱的赶紧修改配置,如果你不幸出了同样的问题, 可以到文章末尾找到解决办法
+4.查找符合系统的git版本
+
+通过下面的命令查找(推荐)
+
+    # yum --enablerepo=rpmforge-extras provides git
+    git-1.7.12.4-1.el6.rfx.x86_64 : Git core and tools
+    Repo        : installed
+    匹配来自于:
+    Other       : 提供依赖满足：git
+或者在软件库中查找
+
+在这里找到系统能支持的git最新版本
+
+5.安装git
+
+# yum --enablerepo=rpmforge-extras install git-1.7.12.4-1.el6.rfx.x86_64
+# git --version
+git version 1.7.12.4
+
+
+
+剩下的如何安装yii我就不在赘言了。总之同步到git之后一切好办啦
